@@ -38,6 +38,18 @@ void MainLoop(void) {
 	Base::UpdateAll();
 	Base::CollisionAll();
 	Base::DrawAll();
+	//˚Må≥
+
+
+
+	//è\âÕ
+
+
+
+	//èºë∫
+
+
+
 
 }
 void Init(void)
