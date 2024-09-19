@@ -14,6 +14,8 @@ Enemy::Enemy(const CVector2D& pos, bool flip)
 	m_img.SetCenter(100 / 2, 100 / 2);
 	//‹éŒ`
 	m_rect = CRect(-25, -100, 25, 0);
+	//hp
+	m_hp = 10;
 }
 
 void Enemy::Update()
