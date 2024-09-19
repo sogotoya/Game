@@ -15,6 +15,15 @@ enum {
     eType_Effect,
     eType_UI,
     eType_Scene,
+    //濵元
+
+
+    //十河
+
+
+    //松村
+
+
 };
 //重力加速度
 #define GRAVITY (9.8f/20)
@@ -138,6 +147,17 @@ public:
     /// 矩形の表示
     /// </summary>
     void DrawRect();
+    //濵元
+
+
+
+    //十河
+
+
+
+    //松村
+
+
 
 
 };
