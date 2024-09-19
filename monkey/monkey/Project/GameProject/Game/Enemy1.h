@@ -1,7 +1,8 @@
 #pragma once
 #include "../Base/Base.h"
 
-class Enemy : public Base {
+class Enemy1 : public Base {
+	private:
 	enum {
 		eState_Idle,
 		eState_Attack,
@@ -23,5 +24,14 @@ class Enemy : public Base {
 	bool m_is_ground;
 	//UŒ‚”Ô†
 	int m_attack_no;
+	//ƒ_ƒ[ƒW”Ô†
+	int m_attack_no;
+	int m_damage_no;
 	
+public:
+	Enemy1(const CVector2D& p, bool flip);
+	void Update();
+	void Draw();
+	void Collision(Base* b);
+
 };
