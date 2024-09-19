@@ -16,7 +16,7 @@ void Enemy3::StateDown()
 {
 }
 
-Enemy3::Enemy3(const CVector2D& pos, bool flip)
+Enemy3::Enemy3(const CVector2D& pos, bool flip) :Base(eType_Enemy3)
 {
 }
 

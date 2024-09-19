@@ -16,10 +16,10 @@ enum {
     eType_UI,
     eType_Scene,
     //ûMŒ³
-
+    eType_Enemy3,
 
     //\‰Í
-
+    eType_Enemy2,
 
     //¼‘º
 
