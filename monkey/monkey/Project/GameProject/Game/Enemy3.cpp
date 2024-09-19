@@ -18,6 +18,7 @@ void Enemy3::StateDown()
 
 Enemy3::Enemy3(const CVector2D& pos, bool flip) :Base(eType_Enemy3)
 {
+	//m_img=COPY_RESOURCE("")
 }
 
 void Enemy3::Update()
