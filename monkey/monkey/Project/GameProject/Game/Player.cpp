@@ -61,24 +61,24 @@ void Player::StateIdle()
 
 
 	//ジャンプ中なら
-	if (!m_is_ground) {
-		if (m_vec.y < 0)
+	//if (!m_is_ground) {
+		//if (m_vec.y < 0)
 			//上昇アニメーション
-			m_img.ChangeAnimation(eAnimJumpUp, false);
-		else
+			//m_img.ChangeAnimation(eAnimJumpUp, false);
+		//else
 			//下降アニメーション
-			m_img.ChangeAnimation(eAnimJumpDown, false);
-	}
+			//m_img.ChangeAnimation(eAnimJumpDown, false);
+	//}
 	//地面にいるなら
-	else
+	//else
 	{
 		if (move_flag) {
 			//走るアニメーション
-			m_img.ChangeAnimation(eAnimRun);
+			//m_img.ChangeAnimation(eAnimRun);
 		}
 		else {
 			//待機アニメーション
-			m_img.ChangeAnimation(eAnimIdle);
+			//m_img.ChangeAnimation(eAnimIdle);
 		}
 	}
 
@@ -88,7 +88,7 @@ void Player::StateIdle()
 void Player::StateAttack()
 {
 	//攻撃アニメーションへ変更
-	m_img.ChangeAnimation(eAnimAttack01, false);
+	//m_img.ChangeAnimation(eAnimAttack01, false);
 	//アニメーションが終了したら
 	if (m_img.CheckAnimationEnd()) {
 		//通常状態へ移行
@@ -98,14 +98,14 @@ void Player::StateAttack()
 }
 void Player::StateDamage()
 {
-	m_img.ChangeAnimation(eAnimDamage, false);
+	//m_img.ChangeAnimation(eAnimDamage, false);
 	if (m_img.CheckAnimationEnd()) {
 		m_state = eState_Idle;
 	}
 }
 void Player::StateDown()
 {
-	m_img.ChangeAnimation(eAnimDown, false);
+	//m_img.ChangeAnimation(eAnimDown, false);
 	if (m_img.CheckAnimationEnd()) {
 		m_kill = true;
 	}
@@ -157,16 +157,16 @@ void Player::Collision(Base* b)
 		//Field型へキャスト、型変換できたら
 		if (Field* f = dynamic_cast<Field*>(b)) {
 			//地面より下にいったら
-			if (m_pos.y > f->GetGroundY()) {
+			//if (m_pos.y > f->GetGroundY()) {
 				//地面の高さに戻す
-				m_pos.y = f->GetGroundY();
+				//m_pos.y = f->GetGroundY();
 				//落下速度リセット
 				m_vec.y = 0;
 				//接地フラグON
 				m_is_ground = true;
 			}
 		}
-		break;
+		//break;
 	}
 
-}
+//}
