@@ -24,7 +24,8 @@ private:
 	bool m_is_ground;
 	//UŒ‚”Ô†
 	int m_attack_no;
-
+	//ƒ_ƒ[ƒW”Ô†
+	int m_damage_no;
 
 
 public:
