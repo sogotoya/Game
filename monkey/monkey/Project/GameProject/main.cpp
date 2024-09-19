@@ -1,5 +1,7 @@
 #include "Base/Base.h"
+#include"Game/Enemy1.h"
 #include"Game/Field.h"
+
 //--------------------------------------------
 //グローバル変数領域
 //--------------------------------------------
@@ -89,8 +91,8 @@ void Init(void)
 	//ゲーム起動時に一度だけ呼ばれる
 	//-----------------------------------------------------
 	//濵元
-	Base::Add(new Field(CVector2D(0, 0)));
-
+	Base::Add(new Field(CVector2D(960, 540)));
+	ADD_RESOURCE("Player", CImage::CreateImage("Image/Player.png", player_anim_data, 256, 256));
 
 
 
