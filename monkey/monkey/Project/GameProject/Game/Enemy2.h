@@ -1,7 +1,7 @@
 #pragma once
 #include "../Base/Base.h"
 
-class Enemy : public Base {
+class Enemy2 : public Base {
 private:
 	enum {
 		eState_Idle,
@@ -29,7 +29,7 @@ private:
 
 
 public:
-	Enemy(const CVector2D& pos, bool flip);
+	Enemy2(const CVector2D& pos, bool flip);
 	void Update();
 	void Draw();
 	void Collision(Base* b);

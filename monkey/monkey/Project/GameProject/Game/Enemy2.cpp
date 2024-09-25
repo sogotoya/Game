@@ -1,6 +1,6 @@
 #include "Enemy2.h"
 
-Enemy::Enemy(const CVector2D& pos, bool flip)
+Enemy2::Enemy2(const CVector2D& pos, bool flip)
 	:Base(eType_Enemy2)
 {
 	m_img = COPY_RESOURCE("Enemy2", CImage);
@@ -26,11 +26,11 @@ Enemy::Enemy(const CVector2D& pos, bool flip)
 	m_damage_no = -5;
 }
 
-void Enemy::Update()
+void Enemy2::Update()
 {
 }
 
-void Enemy::Draw()
+void Enemy2::Draw()
 {
 	//ˆÊ’u
 	m_img.SetPos(GetScreenPos(m_pos));
@@ -43,6 +43,6 @@ void Enemy::Draw()
 
 }
 
-void Enemy::Collision(Base* b)
+void Enemy2::Collision(Base* b)
 {
 }
