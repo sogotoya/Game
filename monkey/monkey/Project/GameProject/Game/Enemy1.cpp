@@ -90,14 +90,52 @@ Enemy1::Enemy1(const CVector2D& p, bool flip) :Base(eType_Enemy) {
 
 void Enemy1::Update()
 {
+	switch (m_state) {
+		//通常状態
+	case eState_Idle:
+			break;
+		//攻撃状態
+	case eState_Attack:
+		StateAttack();
+		break;
+		//ダウン状態
+	case eState_Down:
+		StateDown();
+		break;
+	}
+	//落ちていたら落下中状態へ移行
+	if (m_is_ground && m_vec.y > GRAVITY * 4)
+		m_is_ground = false;
+	//重力による落下
+	m_vec.y += GRAVITY;
+	m_pos += m_vec;
+
+	//アニメーション更新
+	m_img.UpdateAnimation();
+	m_scroll.x = m_pos.x - 1280 / 2;
+
 }
 
 void Enemy1::Draw()
 {
+	//位置設定
+	m_img.SetPos(GetScreenPos(m_pos));
+	//反転設定
+	m_img.SetPos(GetScreenPos(m_pos));
+	//描画
+	m_img.Draw();
 }
 
 void Enemy1::Collision(Base* b)
 {
+	switch (b->m_type) {
+	case eType_Field:
+			//Field型へキャスト、型変換が出来たら
+		if (Field* f = dynamic_cast<Field*>(b)) {
+			//地面より下に行ったら
+			//if(m_pos.y > )
+			//}
+	}
 }
 
 
