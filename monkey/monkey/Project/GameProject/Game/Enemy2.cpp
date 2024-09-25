@@ -1,5 +1,21 @@
 #include "Enemy2.h"
 
+void Enemy2::StateIdle()
+{
+}
+
+void Enemy2::StateAttack()
+{
+}
+
+void Enemy2::StateDamage()
+{
+}
+
+void Enemy2::StateDown()
+{
+}
+
 Enemy2::Enemy2(const CVector2D& pos, bool flip)
 	:Base(eType_Enemy2)
 {
