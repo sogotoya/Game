@@ -44,6 +44,7 @@ Enemy2::Enemy2(const CVector2D& pos, bool flip)
 
 void Enemy2::Update()
 {
+	m_img.UpdateAnimation();
 }
 
 void Enemy2::Draw()
