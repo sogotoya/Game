@@ -1,8 +1,8 @@
-#include "Base/Base.h"
+#include "Base/Base.h" 
 #include"Game/Enemy1.h"
 #include"Game/Field.h"
 #include"Game/AnimData.h"
-
+#include"Game/Map.h"
 //--------------------------------------------
 //グローバル変数領域
 //--------------------------------------------
@@ -48,7 +48,7 @@ void MainLoop(void) {
 
 	//十河
 
-
+	
 
 	//松村
 
@@ -101,7 +101,7 @@ void Init(void)
 
 	//十河
 	//ADD_RESOURCE("Enemy2", CImage::CreateImage("Image/Idle2.png", enemy_anim_data, 100, 50);
-
+	ADD_RESOURCE("Map_Tip", CImage::CreateImage("Image/Mossy - FloatingPlatforms.png"));
 
 
 

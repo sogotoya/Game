@@ -1,4 +1,16 @@
 #pragma once
 #include "../Base/Base.h"
+//â°
+#define MAP_WIDTH  40
+//èc
+#define MAP_HEIGHT 22
+//ëÂÇ´Ç≥
+#define MAP_TIP_SIZE 128
 
-#define
+class Map : public Base {
+private:
+	CImage m_img;
+public:
+	Map();
+	void Draw();
+};
