@@ -47,9 +47,13 @@ void Enemy1::StateIdle()
 }
 void Enemy1::StateAttack()
 {
+	//攻撃アニメーションへの変更
+	//m_img.ChangeAnimation(eAnimAttack01, false);
+
 }
 void Enemy1::StateDamage()
 {
+	//m_img.ChangeAnimation(eAnimDamage, false);
 }
 void Enemy1::StateDown()
 {
