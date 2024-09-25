@@ -56,9 +56,13 @@ void Enemy1::StateAttack()
 void Enemy1::StateDamage()
 {
 	//m_img.ChangeAnimation(eAnimDamage, false);
+	if (m_img.CheckAnimationEnd()) {
+		m_state = eState_Idle;
+	}
 }
 void Enemy1::StateDown()
 {
+	//m_img.ChangeAnimation(eAnimDown, false);
 }
 Enemy1::Enemy1(const CVector2D& p, bool flip) :Base(eType_Enemy) {
 	//‰æ‘œ•¡»
