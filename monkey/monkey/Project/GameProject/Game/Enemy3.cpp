@@ -18,7 +18,10 @@ void Enemy3::StateDown()
 
 Enemy3::Enemy3(const CVector2D& pos, bool flip) :Base(eType_Enemy3)
 {
-	//m_img=COPY_RESOURCE("")
+	//‰æ‘œ•¡»
+	m_img = COPY_RESOURCE("Enemy3", CImage);
+	//‘Ì—Í
+	m_hp = 35;
 }
 
 void Enemy3::Update()
