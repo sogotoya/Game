@@ -25,7 +25,7 @@ class Enemy1 : public Base {
 	//UŒ‚”Ô†
 	int m_attack_no;
 	//ƒ_ƒ[ƒW”Ô†
-	int m_attack_no;
+	
 	int m_damage_no;
 	
 public:

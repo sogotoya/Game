@@ -45,6 +45,15 @@ void Enemy1::StateIdle()
 		}
 	}
 }
+void Enemy1::StateAttack()
+{
+}
+void Enemy1::StateDamage()
+{
+}
+void Enemy1::StateDown()
+{
+}
 Enemy1::Enemy1(const CVector2D& p, bool flip) :Base(eType_Enemy) {
 	//‰æ‘œ•¡»
 	m_img = COPY_RESOURCE("Enemy", CImage);
@@ -67,6 +76,18 @@ Enemy1::Enemy1(const CVector2D& p, bool flip) :Base(eType_Enemy) {
 	//ƒ_ƒ[ƒW”Ô†
 	m_damage_no = -1;
 
+}
+
+void Enemy1::Update()
+{
+}
+
+void Enemy1::Draw()
+{
+}
+
+void Enemy1::Collision(Base* b)
+{
 }
 
 
