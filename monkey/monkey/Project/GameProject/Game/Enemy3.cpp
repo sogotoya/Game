@@ -1,20 +1,5 @@
 #include "Enemy3.h"
 
-void Enemy3::StateIdle()
-{
-}
-
-void Enemy3::StateAttack()
-{
-}
-
-void Enemy3::StateDamage()
-{
-}
-
-void Enemy3::StateDown()
-{
-}
 
 Enemy3::Enemy3(const CVector2D& pos, bool flip) :Base(eType_Enemy3)
 {
@@ -26,6 +11,24 @@ Enemy3::Enemy3(const CVector2D& pos, bool flip) :Base(eType_Enemy3)
 
 void Enemy3::Update()
 {
+    /*switch (m_state) {
+        //通常状態
+    case eState_Idle:
+        StateIdle();
+        break;
+        //攻撃状態
+    case eState_Attack:
+        StateAttack();
+        break;
+        //ダメージ状態
+    case eState_Damage:
+        StateDamage();
+        break;
+        //ダウン状態
+    case eState_Down:
+        StateDown();
+        break;
+    }*/
 }
 
 void Enemy3::Draw()
