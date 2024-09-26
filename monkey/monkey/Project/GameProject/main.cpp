@@ -115,7 +115,7 @@ void Init(void)
 
 
 	//è\âÕ
-	//ADD_RESOURCE("Enemy2", CImage::CreateImage("Image/Idle2.png", enemy2_anim_data, 100, 50);
+	ADD_RESOURCE("Enemy2", CImage::CreateImage("Image/Idle2.png", enemy2_anim_data, 100, 50);
 	ADD_RESOURCE("Map_Tip", CImage::CreateImage("Image/Mossy - FloatingPlatforms.png"));
 
 

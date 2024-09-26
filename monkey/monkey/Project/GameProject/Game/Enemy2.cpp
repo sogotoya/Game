@@ -1,5 +1,36 @@
 #include "Enemy2.h"
 
+static TexAnim Enemy2Step[] = {
+	{ 0,4 },
+	{ 1,4 },
+	{ 2,4 },
+	{ 3,4 },
+	
+};
+static TexAnim Enemy2Attack[] = {
+	{ 0,3 },
+	{ 1,3 },
+	{ 2,3 },
+	{ 3,3 },
+	{ 4,3 },
+	{ 5,3 },
+	{ 6,3 },
+	{ 7,3 },
+};
+static TexAnim Enemy2die[] = {
+	{ 0,4 },
+	{ 1,4 },
+	{ 2,4 },
+	{ 3,4 },
+};
+
+
+TexAnimData enemy2_anim_data[] = {
+	ANIMDATA(Enemy2Step),
+	ANIMDATA(Enemy2Attack),
+	ANIMDATA(Enemy2die),
+};
+
 void Enemy2::StateIdle()
 {
 }
