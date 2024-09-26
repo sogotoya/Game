@@ -114,7 +114,7 @@ void Player::StateDown()
 
 void Player::Update() {
 	m_img.ChangeAnimation(0);
-	m_img.ChangeAnimation();
+	//m_img.ChangeAnimation();
 	return;
 	switch (m_state) {
 		//’Êíó‘Ô
