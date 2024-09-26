@@ -15,6 +15,8 @@ Enemy3::Enemy3(const CVector2D& pos, bool flip) :Base(eType_Enemy3)
     m_img.ChangeAnimation(0);
     //’†SˆÊ’uİ’è
     m_img.SetCenter(128, 224);
+    m_img.SetSize(300, 300);
+    
 }
 void Enemy3::StateIdle() {
     /*//ˆÚ“®—Ê
@@ -142,7 +144,7 @@ void Enemy3::StateDown()
 
 void Enemy3::Update()
 {
-    m_img.ChangeAnimation(0);
+    m_img.ChangeAnimation(3);
     m_img.UpdateAnimation();
     return;
     switch (m_state) {

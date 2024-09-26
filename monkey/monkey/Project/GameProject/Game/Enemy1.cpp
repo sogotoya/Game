@@ -75,6 +75,7 @@ Enemy1::Enemy1(const CVector2D& p, bool flip) :Base(eType_Enemy) {
 	m_img.SetCenter(128, 224);
 	//当たり判定用矩形設定
 	m_rect = CRect(-32, -128, 32, 0);
+	m_img.SetSize(800, 800);
 	//ヒットポイント
 	m_hp = 5;
 	//反転フラグ
@@ -162,3 +163,5 @@ void Enemy1::Collision(Base* b)
 	//break;
 //	}
 //}
+
+//SetSize

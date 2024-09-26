@@ -114,7 +114,7 @@ void Player::StateDown()
 
 void Player::Update() {
 	m_img.ChangeAnimation(0);
-	//m_img.ChangeAnimation();
+	m_img.UpdateAnimation();
 	return;
 	switch (m_state) {
 		//í èÌèÛë‘
@@ -175,12 +175,12 @@ void Player::Collision(Base* b)
 //}
 
 static TexAnim playerStep[] = {
-	{ 37,4 },
-	{ 38,4 },
-	{ 39,4 },
-	{ 40,4 },
-	{ 41,4 },
-	{ 42,4 },
+	{ 37,10 },
+	{ 38,10 },
+	{ 39,10 },
+	{ 40,10 },
+	{ 41,10 },
+	{ 42,10 },
 };
 static TexAnim playerAttack01[] = {
 	{ 43,2 },
