@@ -1,11 +1,11 @@
 #pragma once
 #include "../Base/Base.h"
 //â°
-#define MAP_WIDTH  40
+#define MAP_WIDTH  20
 //èc
-#define MAP_HEIGHT 22
+#define MAP_HEIGHT 20
 //ëÂÇ´Ç≥
-#define MAP_TIP_SIZE 128
+#define MAP_TIP_SIZE 20
 
 class Map : public Base {
 private:
