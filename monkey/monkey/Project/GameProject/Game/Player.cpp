@@ -113,6 +113,9 @@ void Player::StateDown()
 
 
 void Player::Update() {
+	m_img.ChangeAnimation(0);
+	m_img.ChangeAnimation();
+	return;
 	switch (m_state) {
 		//í èÌèÛë‘
 	case eState_Idle:
@@ -189,8 +192,9 @@ static TexAnim playerAttack01[] = {
 	{ 49,2 },
 };
 
+
 TexAnimData player_anim_data[] = {
 	ANIMDATA(playerStep),
 	ANIMDATA(playerAttack01),
-	
+	//ANIMDATA(playerDown),
 };
