@@ -130,12 +130,12 @@ void Enemy1::Collision(Base* b)
 {
 	switch (b->m_type) {
 	case eType_Field:
-			//Field型へキャスト、型変換が出来たら
+		//Field型へキャスト、型変換が出来たら
 		if (Field* f = dynamic_cast<Field*>(b)) {
 			//地面より下に行ったら
 			//if(m_pos.y > )
 			//}
+		}
 	}
 }
-
 
