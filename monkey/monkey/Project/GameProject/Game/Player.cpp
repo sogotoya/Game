@@ -170,3 +170,27 @@ void Player::Collision(Base* b)
 	}
 
 //}
+
+static TexAnim playerStep[] = {
+	{ 37,4 },
+	{ 38,4 },
+	{ 39,4 },
+	{ 40,4 },
+	{ 41,4 },
+	{ 42,4 },
+};
+static TexAnim playerAttack01[] = {
+	{ 43,2 },
+	{ 44,2 },
+	{ 45,2 },
+	{ 46,2 },
+	{ 47,2 },
+	{ 48,2 },
+	{ 49,2 },
+};
+
+TexAnimData player_anim_data[] = {
+	ANIMDATA(playerStep),
+	ANIMDATA(playerAttack01),
+	
+};
