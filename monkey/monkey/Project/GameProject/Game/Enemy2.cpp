@@ -23,12 +23,17 @@ static TexAnim Enemy2die[] = {
 	{ 2,4 },
 	{ 3,4 },
 };
-
-
+static TexAnim Enemy2Hit[] = {
+	{ 0,4 },
+	{ 1,4 },
+	{ 2,4 },
+	{ 3,4 },
+};
 TexAnimData enemy2_anim_data[] = {
 	ANIMDATA(Enemy2Step),
 	ANIMDATA(Enemy2Attack),
 	ANIMDATA(Enemy2die),
+	ANIMDATA(Enemy2Hit),
 };
 
 void Enemy2::StateIdle()
