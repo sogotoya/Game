@@ -3,7 +3,7 @@
 #include"Game/Field.h"
 #include"Game/AnimData.h"
 #include"Game/Map.h"
-
+#include"Game/Player.h"
 
 
 
@@ -123,7 +123,7 @@ void Init(void)
 
 
 //èºë∫
-	//ADD_RESOURCE("Player", CImage::CreateImage("Image/Player.png", player_anim_data, 256, 256));
+	ADD_RESOURCE("Player", CImage::CreateImage("Image/pureiya-.png", player_anim_data, 256, 256));
 
 
 
