@@ -3,40 +3,40 @@
 #include "Field.h"
 #include "Map.h"
 
-static TexAnim Enemy2Step[] = {
+static TexAnim Enemy2Step[] = {//0
 	{ 0,4 },
 	{ 1,4 },
 	{ 2,4 },
 	{ 3,4 },
 	
 };
-static TexAnim Enemy2Attack[] = {
-	{ 0,3 },
-	{ 1,3 },
-	{ 2,3 },
-	{ 3,3 },
-	{ 4,3 },
-	{ 5,3 },
-	{ 6,3 },
-	{ 7,3 },
+static TexAnim Enemy2Attack[] = {//1
+	{ 0,10 },
+	{ 1,10 },
+	{ 2,10 },
+	{ 3,10 },
+	{ 4,6 },
+	{ 5,6 },
+	{ 6,1 },
+	{ 7,6 },
 };
-static TexAnim Enemy2die[] = {
+static TexAnim Enemy2die[] = {//2
 	{ 0,10 },
 	{ 1,10 },
 	{ 2,10 },
 	{ 3,10 },
 };
-static TexAnim Enemy2Hit[] = {
+static TexAnim Enemy2Hit[] = {//3
 	{ 0,4 },
 	{ 1,4 },
 	{ 2,4 },
 	{ 3,4 },
 };
 TexAnimData enemy2_anim_data[] = {
-	ANIMDATA(Enemy2Step),
-	ANIMDATA(Enemy2Attack),
-	ANIMDATA(Enemy2die),
-	ANIMDATA(Enemy2Hit),
+	ANIMDATA(Enemy2Step),//0
+	ANIMDATA(Enemy2Attack),//1
+	ANIMDATA(Enemy2die),//2
+	ANIMDATA(Enemy2Hit),//3
 };
 
 void Enemy2::StateIdle()
@@ -111,7 +111,7 @@ Enemy2::Enemy2(const CVector2D& pos, bool flip)
 {
 	m_img = COPY_RESOURCE("Enemy2", CImage);
 	//再生アニメーション設定
-	m_img.ChangeAnimation(0);
+	m_img.ChangeAnimation(1);
 	//座標
 	m_pos_old = m_pos = pos;
 	//画像表示サイズ 
@@ -134,7 +134,7 @@ Enemy2::Enemy2(const CVector2D& pos, bool flip)
 
 void Enemy2::Update()
 {
-	m_img.ChangeAnimation(0);
+	m_img.ChangeAnimation(1);
 	m_img.UpdateAnimation();
 }
 

@@ -115,7 +115,7 @@ void Init(void)
 
 
 	//è\âÕ
-	ADD_RESOURCE("Enemy2", CImage::CreateImage("Image/Idle2.png", enemy2_anim_data, 150, 150));
+	ADD_RESOURCE("Enemy2", CImage::CreateImage("Image/gobuta.png", enemy2_anim_data, 150, 150));
 	Base::Add(new Enemy2(CVector2D(100, 100), true));
 	ADD_RESOURCE("Map_Tip", CImage::CreateImage("Image/Mossy - FloatingPlatforms.png"));
 
