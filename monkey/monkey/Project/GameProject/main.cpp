@@ -109,8 +109,8 @@ void Init(void)
 	//-----------------------------------------------------
 	//ûMŒ³
 	Base::Add(new Field(CVector2D(960, 540)));
-	ADD_RESOURCE("Enemy3", CImage::CreateImage("Image/sova.png", enemy3_anim_data, 256, 256));
-
+	ADD_RESOURCE("Enemy3", CImage::CreateImage("Image/sova.png", enemy3_anim_data, 228,128 ));
+	Base::Add(new Enemy3(CVector2D(200, 200), true));
 
 
 

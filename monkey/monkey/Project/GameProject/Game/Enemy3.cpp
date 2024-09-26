@@ -6,6 +6,7 @@ Enemy3::Enemy3(const CVector2D& pos, bool flip) :Base(eType_Enemy3)
 {
 	//画像複製
 	m_img = COPY_RESOURCE("Enemy3", CImage);
+    m_pos = pos;
 	//体力
 	m_hp = 35;
     //通常状態
@@ -16,7 +17,7 @@ Enemy3::Enemy3(const CVector2D& pos, bool flip) :Base(eType_Enemy3)
     m_img.SetCenter(128, 224);
 }
 void Enemy3::StateIdle() {
-    //移動量
+    /*//移動量
     const float move_speed = 6;
     //移動フラグ
     bool move_flag = false;
@@ -41,14 +42,14 @@ void Enemy3::StateIdle() {
         //左攻撃
         if (player->m_pos.x < m_pos.x && player->m_pos.x > m_pos.x - 64) {
             //攻撃状態へ
-            m_state = eState_Attack;
+            m_state = eState_Attack01;
             m_attack_no++;
             m_flip = true;
         }
         //右攻撃
         if (player->m_pos.x > m_pos.x && player->m_pos.x < m_pos.x + 64) {
             //攻撃状態へ
-            m_state = eState_Attack;
+            m_state = eState_Attack01;
             m_attack_no++;
             m_flip = false;
         }
@@ -61,9 +62,9 @@ void Enemy3::StateIdle() {
     else {
         //待機アニメーション
         m_img.ChangeAnimation(eAnimIdle);
-    }
+    }*/
 }
-void Enemy3::StateAttack()
+void Enemy3::StateAttack01()
 {
     //攻撃アニメーションへ変更
     m_img.ChangeAnimation(eAnimAttack01, false);
@@ -74,6 +75,46 @@ void Enemy3::StateAttack()
         }
         else {
            // Base::Add(new Slash(m_pos + CVector2D(64, -64), m_flip, eType_Enemy_Attack, m_attack_no));
+        }
+    }
+    //アニメーションが終了したら
+    if (m_img.CheckAnimationEnd()) {
+        //通常状態へ移行
+        m_state = eState_Idle;
+    }
+
+}
+void Enemy3::StateAttack02()
+{
+    //攻撃アニメーションへ変更
+    m_img.ChangeAnimation(eAnimAttack01, false);
+    //3番目のパターンなら
+    if (m_img.GetIndex() == 3) {
+        if (m_flip) {
+            // Base::Add(new Slash(m_pos + CVector2D(-64, -64), m_flip, eType_Enemy_Attack, m_attack_no));
+        }
+        else {
+            // Base::Add(new Slash(m_pos + CVector2D(64, -64), m_flip, eType_Enemy_Attack, m_attack_no));
+        }
+    }
+    //アニメーションが終了したら
+    if (m_img.CheckAnimationEnd()) {
+        //通常状態へ移行
+        m_state = eState_Idle;
+    }
+
+}
+void Enemy3::StateAttack03()
+{
+    //攻撃アニメーションへ変更
+    m_img.ChangeAnimation(eAnimAttack01, false);
+    //3番目のパターンなら
+    if (m_img.GetIndex() == 3) {
+        if (m_flip) {
+            // Base::Add(new Slash(m_pos + CVector2D(-64, -64), m_flip, eType_Enemy_Attack, m_attack_no));
+        }
+        else {
+            // Base::Add(new Slash(m_pos + CVector2D(64, -64), m_flip, eType_Enemy_Attack, m_attack_no));
         }
     }
     //アニメーションが終了したら
@@ -101,14 +142,25 @@ void Enemy3::StateDown()
 
 void Enemy3::Update()
 {
+    m_img.ChangeAnimation(0);
+    m_img.UpdateAnimation();
+    return;
     switch (m_state) {
         //通常状態
     case eState_Idle:
         StateIdle();
         break;
-        //攻撃状態
-    case eState_Attack:
-        StateAttack();
+        //攻撃状態01
+    case eState_Attack01:
+        StateAttack01();
+        break;
+        //攻撃状態02
+    case eState_Attack02:
+        StateAttack02();
+        break;
+        //攻撃状態03
+    case eState_Attack03:
+        StateAttack03();
         break;
         //ダメージ状態
     case eState_Damage:

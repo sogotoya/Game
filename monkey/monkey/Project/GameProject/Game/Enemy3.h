@@ -6,7 +6,9 @@ private:
 	//ó‘Ô
 	enum {
 		eState_Idle,
-		eState_Attack,
+		eState_Attack01,
+		eState_Attack02,
+		eState_Attack03,
 		eState_Damage,
 		eState_Down,
 	};
@@ -29,7 +31,9 @@ private:
 
 		//Šeó‘Ô‚Å‚Ì‹““®
 	void StateIdle();
-	void StateAttack();
+	void StateAttack01();
+	void StateAttack02();
+	void StateAttack03();
 	void StateDamage();
 	void StateDown();
 public:
