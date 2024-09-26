@@ -129,13 +129,36 @@ void Enemy1::Draw()
 void Enemy1::Collision(Base* b)
 {
 	switch (b->m_type) {
-	case eType_Field:
-		//Field型へキャスト、型変換が出来たら
-		if (Field* f = dynamic_cast<Field*>(b)) {
-			//地面より下に行ったら
-			//if(m_pos.y > )
-			//}
+	case eType_Player_Attack:
+		//Slash型へのキャスト、型変換出来たら
+		//if (Slash* s = dynamic_cast<Slash*>(b)) {
+			//if (m_damage_no != s->GetAttackNo() && Base::CollisionRect(this, s)) {
+				//同じ攻撃の連続ダメージ防止
+			//	m_damage_no = s->GetAttackNo();
+				m_hp -= 50;
+				if (m_hp <= 0) {
+					m_state = eState_Down;
+				}
+				else {
+					m_state = eState_Damage;
+				}
+		//		Base::Add(new Effect("Effect_Blood", m_pos + CVector2D(0, -128), m_flip));
+			}
 		}
-	}
-}
-
+	//	break;
+	//case eType_Field:
+		//Field型へのキャスト、型変換出来たら
+	//	if (Field* f = dynamic_cast<Field*> (b)) {
+			//地面よりも下に行ったら
+		//	if (m_pos.y > f->GetGroundY()) {
+				//地面の高さに戻す
+			//	m_pos.y = f->GetGroundY();
+				//落下速度リセット
+			//	m_vec.y = 0;
+				//接地フラグON
+			//	m_is_ground = true;
+		//	}
+		//}
+	//break;
+//	}
+//}
