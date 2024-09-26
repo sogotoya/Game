@@ -123,7 +123,7 @@ void Init(void)
 
 
 //èºë∫
-
+	//ADD_RESOURCE("Player", CImage::CreateImage("Image/Player.png", player_anim_data, 256, 256));
 
 
 
