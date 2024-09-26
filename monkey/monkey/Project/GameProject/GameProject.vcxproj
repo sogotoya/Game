@@ -23,6 +23,7 @@
     <ClCompile Include="Game\Goal.cpp" />
     <ClCompile Include="Game\Map.cpp" />
     <ClCompile Include="Game\Player.cpp" />
+    <ClCompile Include="Game\Slash.cpp" />
     <ClCompile Include="Game\Title.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
@@ -39,6 +40,7 @@
     <ClInclude Include="Game\Goal.h" />
     <ClInclude Include="Game\Map.h" />
     <ClInclude Include="Game\Player.h" />
+    <ClInclude Include="Game\Slash.h" />
     <ClInclude Include="Game\Title.h" />
     <ClInclude Include="Global.h" />
   </ItemGroup>

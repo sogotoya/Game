@@ -12,6 +12,7 @@ Player::Player(const CVector2D& p, bool flip) :
 	m_pos = p;
 	//中心位置設定
 	m_img.SetCenter(128, 224);
+	m_img.SetSize(100, 100);
 	//反転フラグ
 	m_flip = flip;
 	//通常状態へ
@@ -175,12 +176,12 @@ void Player::Collision(Base* b)
 //}
 
 static TexAnim playerStep[] = {
-	{ 37,10 },
+	
 	{ 38,10 },
 	{ 39,10 },
 	{ 40,10 },
 	{ 41,10 },
-	{ 42,10 },
+	
 };
 static TexAnim playerAttack01[] = {
 	{ 43,2 },
