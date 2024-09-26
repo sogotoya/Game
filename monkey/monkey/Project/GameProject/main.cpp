@@ -123,8 +123,8 @@ void Init(void)
 
 
 //èºë∫
-	ADD_RESOURCE("Player", CImage::CreateImage("Image/pureiya-.png", player_anim_data, 256, 256));
-
+	ADD_RESOURCE("Player", CImage::CreateImage("Image/pureiya-.png", player_anim_data, 50, 37));
+	Base::Add(new Player(CVector2D(400, 400), true));
 
 
 
