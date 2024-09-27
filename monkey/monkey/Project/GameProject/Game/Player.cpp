@@ -62,24 +62,24 @@ void Player::StateIdle()
 
 
 	//ジャンプ中なら
-	//if (!m_is_ground) {
-		//if (m_vec.y < 0)
+	if (!m_is_ground) {
+		if (m_vec.y < 0)
 			//上昇アニメーション
-			//m_img.ChangeAnimation(eAnimJumpUp, false);
-		//else
+			m_img.ChangeAnimation(eAnimJumpUp, false);
+		else
 			//下降アニメーション
-			//m_img.ChangeAnimation(eAnimJumpDown, false);
-	//}
+		m_img.ChangeAnimation(eAnimJumpDown, false);
+	}
 	//地面にいるなら
-	//else
+	else
 	{
 		if (move_flag) {
 			//走るアニメーション
-			//m_img.ChangeAnimation(eAnimRun);
+			m_img.ChangeAnimation(eAnimRun);
 		}
 		else {
 			//待機アニメーション
-			//m_img.ChangeAnimation(eAnimIdle);
+			m_img.ChangeAnimation(eAnimIdle);
 		}
 	}
 
@@ -89,7 +89,7 @@ void Player::StateIdle()
 void Player::StateAttack()
 {
 	//攻撃アニメーションへ変更
-	//m_img.ChangeAnimation(eAnimAttack01, false);
+	m_img.ChangeAnimation(eAnimAttack01, false);
 	//アニメーションが終了したら
 	if (m_img.CheckAnimationEnd()) {
 		//通常状態へ移行
@@ -114,7 +114,7 @@ void Player::StateDown()
 
 
 void Player::Update() {
-	m_img.ChangeAnimation(0);
+	m_img.ChangeAnimation(3);
 	m_img.UpdateAnimation();
 	return;
 	switch (m_state) {
@@ -175,12 +175,28 @@ void Player::Collision(Base* b)
 
 //}
 
-static TexAnim playerStep[] = {
+static TexAnim playerIdle[] = {
 	
+	{ 1,18 },
+	{ 2,18 },
+	{ 3,18 },
+
+};
+static TexAnim playerBattou[] = {
+
 	{ 38,10 },
 	{ 39,10 },
 	{ 40,10 },
 	{ 41,10 },
+
+};
+static TexAnim playerStep[] = {
+	{ 8,10 },
+	{ 9,10 },
+	{ 10,10 },
+	{ 11,10 },
+	{ 12,10 },
+	{ 13,10 },
 	
 };
 static TexAnim playerAttack01[] = {
@@ -192,10 +208,18 @@ static TexAnim playerAttack01[] = {
 	{ 48,2 },
 	{ 49,2 },
 };
-
+static TexAnim playerCrouchi[] = {
+	{ 5,2 },
+	{ 6,2 },
+	{ 7,2 },
+	
+};
 
 TexAnimData player_anim_data[] = {
+	ANIMDATA(playerIdle),
+	ANIMDATA(playerBattou),
 	ANIMDATA(playerStep),
 	ANIMDATA(playerAttack01),
+	ANIMDATA(playerCrouchi),
 	//ANIMDATA(playerDown),
 };
