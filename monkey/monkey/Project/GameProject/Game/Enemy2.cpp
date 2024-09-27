@@ -4,10 +4,11 @@
 #include "Map.h"
 
 static TexAnim Enemy2Step[] = {//0
-	{ 0,4 },
-	{ 1,4 },
-	{ 2,4 },
-	{ 3,4 },
+	{ 0,15 },
+	{ 1,15 },
+	{ 2, 15},
+	
+	
 	
 };
 static TexAnim Enemy2Attack[] = {//1
@@ -134,7 +135,7 @@ Enemy2::Enemy2(const CVector2D& pos, bool flip)
 
 void Enemy2::Update()
 {
-	m_img.ChangeAnimation(1);
+	m_img.ChangeAnimation(0);
 	m_img.UpdateAnimation();
 }
 

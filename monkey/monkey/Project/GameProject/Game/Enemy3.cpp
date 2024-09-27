@@ -144,7 +144,7 @@ void Enemy3::StateDown()
 
 void Enemy3::Update()
 {
-    m_img.ChangeAnimation(2);
+    m_img.ChangeAnimation(1);
     m_img.UpdateAnimation();
     return;
     switch (m_state) {
