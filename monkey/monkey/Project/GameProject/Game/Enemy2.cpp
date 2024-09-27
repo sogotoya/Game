@@ -4,10 +4,13 @@
 #include "Map.h"
 
 static TexAnim Enemy2Step[] = {//0
-	{ 0,4 },
-	{ 1,4 },
-	{ 2,4 },
-	{ 3,4 },
+
+	{ 16,8 },
+	{ 17,8},
+	{ 18,8 },
+	{ 19,8 },
+	
+	
 	
 };
 static TexAnim Enemy2Attack[] = {//1
@@ -21,22 +24,27 @@ static TexAnim Enemy2Attack[] = {//1
 	{ 7,6 },
 };
 static TexAnim Enemy2die[] = {//2
-	{ 0,10 },
-	{ 1,10 },
-	{ 2,10 },
-	{ 3,10 },
+	{ 8,5 },
+	{ 9,30 },
+	{ 10,60 },
+	{ 11,60 },
 };
-static TexAnim Enemy2Hit[] = {//3
-	{ 0,4 },
-	{ 1,4 },
-	{ 2,4 },
-	{ 3,4 },
+static TexAnim Enemy2ran[] = {//3
+	{ 24,4 },
+	{25,4 },
+	{ 26,4 },
+	{ 27,4 },
+	{ 28,4 },
+	{ 29,4 },
+	{ 30,4 },
+	{ 31,4 },
+
 };
 TexAnimData enemy2_anim_data[] = {
 	ANIMDATA(Enemy2Step),//0
 	ANIMDATA(Enemy2Attack),//1
 	ANIMDATA(Enemy2die),//2
-	ANIMDATA(Enemy2Hit),//3
+	ANIMDATA(Enemy2ran),//3
 };
 
 void Enemy2::StateIdle()
@@ -134,7 +142,7 @@ Enemy2::Enemy2(const CVector2D& pos, bool flip)
 
 void Enemy2::Update()
 {
-	m_img.ChangeAnimation(1);
+	m_img.ChangeAnimation(3);
 	m_img.UpdateAnimation();
 }
 
