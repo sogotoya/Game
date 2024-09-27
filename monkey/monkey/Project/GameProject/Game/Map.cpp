@@ -2,9 +2,7 @@
 
 
 
-TexAnimData Map_anim_data[] = {
-	ANIMDATA(kusa),//0
-};
+
 Map::Map():Base(eType_Map)
 {
 	//‰æ‘œ‚Ì•¡»
