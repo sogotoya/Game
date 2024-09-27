@@ -51,3 +51,32 @@ void Map::Draw()
 		}
 	}
 }
+
+int Map::GetTip(const CVector2D& pos)
+{
+    //列計算
+    int col = pos.x / MAP_TIP_SIZE;
+    //列の制限(0～MAP_TIPWIDTH-1)
+    if (col < 0)col = 0;
+    if (col > MAP_WIDTH - 1)col = MAP_WIDTH - 1;
+    //行計算
+    int row = pos.y / MAP_TIP_SIZE;
+    //行の制御（0～MAP_HEIGHT-1）
+    if (row < 0)row = 0;
+    if (row > MAP_HEIGHT - 1)row = MAP_HEIGHT - 1;
+    //チップデータ返却
+    return GetTip(col, row);
+}
+
+int Map::GetTip(int col, int row)
+{
+    return stage1data[row][col];
+}
+
+int Map::CollisionPoint(const CVector2D& pos)
+{
+    //1点のみ検証
+    int t = GetTip(pos);
+    if (t != 0)return 1;
+    return 0;
+}
