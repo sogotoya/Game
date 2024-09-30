@@ -33,3 +33,4 @@ enum {
 
 //敵のアニメーションデータ
 extern TexAnimData enemy3_anim_data[];
+
