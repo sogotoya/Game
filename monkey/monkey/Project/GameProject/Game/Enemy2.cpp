@@ -2,6 +2,7 @@
 #include "AnimData.h"
 #include "Field.h"
 #include "Map.h"
+#include "../Base/Base.h"
 
 static TexAnim Enemy2Step[] = {//0
 
@@ -145,7 +146,12 @@ void Enemy2::Update()
 	m_img.ChangeAnimation(eAnimIdle);//(3)
 	//XV
 	m_img.UpdateAnimation();
-
+	//—‚¿‚Ä‚¢‚½‚ç—‰ºó‘Ô‚Ö
+	if (m_is_ground && m_vec.y > GRAVITY * 4)
+		m_is_ground = false;
+	//d—Í—‰º
+	m_vec.y += GRAVITY;
+	m_pos += m_vec;
 }
 
 void Enemy2::Draw()
