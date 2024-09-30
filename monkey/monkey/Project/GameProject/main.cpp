@@ -107,11 +107,11 @@ void Init(void)
 	//ゲーム起動時に一度だけ呼ばれる
 	//-----------------------------------------------------
 	//濵元
-	Base::Add(new Field(CVector2D(960, 540)));
+	//Base::Add(new Field(CVector2D(960, 540)));
 	ADD_RESOURCE("Enemy3", CImage::CreateImage("Image/sova.png", enemy3_anim_data, 288,128 ));
 	Base::Add(new Enemy3(CVector2D(200, 200), true));
-	
-
+	ADD_RESOURCE("sky", CImage::CreateImage("Image/haikei2.png"));
+	Base::Add(new Field(CVector2D(960, 540)));
 
 
 	//十河

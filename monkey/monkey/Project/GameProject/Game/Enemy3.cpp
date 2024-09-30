@@ -1,5 +1,6 @@
 #include "Enemy3.h"
 #include"AnimData.h"
+#include "../Base/Base.h"
 
 
 Enemy3::Enemy3(const CVector2D& pos, bool flip) :Base(eType_Enemy3)
@@ -11,6 +12,8 @@ Enemy3::Enemy3(const CVector2D& pos, bool flip) :Base(eType_Enemy3)
 	m_hp = 35;
     //通常状態
     m_state = eState_Idle;
+    //着地フラグ
+    m_is_ground = true;
     //再生アニメーション設定
     m_img.ChangeAnimation(0);
     //中心位置設定
@@ -144,9 +147,9 @@ void Enemy3::StateDown()
 
 void Enemy3::Update()
 {
-    m_img.ChangeAnimation(1);
-    m_img.UpdateAnimation();
-    return;
+    //m_img.ChangeAnimation(1);
+    //m_img.UpdateAnimation();
+    //return;
     switch (m_state) {
         //通常状態
     case eState_Idle:
@@ -173,6 +176,13 @@ void Enemy3::Update()
         StateDown();
         break;
     }
+    //落ちたら落下状態へ以降
+    if (m_is_ground && m_vec.y > GRAVITY * 4)
+        m_is_ground = false;
+    //重力による落下
+    m_vec.y += GRAVITY;
+    m_pos += m_vec;
+
 }
 
 void Enemy3::Draw()
