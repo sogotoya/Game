@@ -163,5 +163,59 @@ void Enemy1::Collision(Base* b)
 	//break;
 //	}
 //}
+static TexAnim enemy1Idle[] = {
 
-//SetSize
+	{ 1,18 },
+	{ 2,18 },
+	{ 3,18 },
+
+};
+static TexAnim enemy1Battou[] = {
+
+	{ 38,10 },
+	{ 39,10 },
+	{ 40,10 },
+	{ 41,10 },
+
+};
+static TexAnim enemy1Step[] = {
+	{ 8,10 },
+	{ 9,10 },
+	{ 10,10 },
+	{ 11,10 },
+	{ 12,10 },
+	{ 13,10 },
+
+};
+static TexAnim enemy1Attack01[] = {
+	{ 43,7 },
+	{ 44,7 },
+	{ 45,7 },
+	{ 46,7 },
+	{ 47,7 },
+	{ 48,7 },
+	{ 49,7 },
+};
+static TexAnim enemy1Crouchi[] = {
+	{ 4,10 },
+	{ 5,10 },
+	{ 6,10 },
+	{ 7,10 },
+
+};
+static TexAnim enemy1Down[] = {
+	{ 64,18 },
+	{ 65,18 },
+	{ 66,18 },
+	{ 67,18 },
+	{ 68,18 },
+	{ 69,18 },
+};
+TexAnimData enemy1_anim_data[] = {
+	ANIMDATA(enemy1Idle),
+	ANIMDATA(enemy1Battou),
+	ANIMDATA(enemy1Step),
+	ANIMDATA(enemy1Attack01),
+	ANIMDATA(enemy1Crouchi),
+	ANIMDATA(enemy1Down),
+};
