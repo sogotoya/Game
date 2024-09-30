@@ -53,8 +53,7 @@ void Enemy2::StateIdle()
 	const float move_speed = 6;
 	//移動フラグ
 	bool move_flag = false;
-	//ジャンプ力
-	const float jump_pow = 12;
+
 	Base* player = Base::FindObject(eType_Player);
 	if (player) {
 		//左移動
@@ -119,7 +118,7 @@ Enemy2::Enemy2(const CVector2D& pos, bool flip)
 {
 	m_img = COPY_RESOURCE("Enemy2", CImage);
 	//再生アニメーション設定
-	m_img.ChangeAnimation(1);
+	m_img.ChangeAnimation(0);
 	//座標
 	m_pos_old = m_pos = pos;
 	//画像表示サイズ 
@@ -142,8 +141,11 @@ Enemy2::Enemy2(const CVector2D& pos, bool flip)
 
 void Enemy2::Update()
 {
-	m_img.ChangeAnimation(3);
+	//待機
+	m_img.ChangeAnimation(eAnimIdle);//(3)
+	//更新
 	m_img.UpdateAnimation();
+
 }
 
 void Enemy2::Draw()
