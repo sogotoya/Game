@@ -2,6 +2,7 @@
 #include "AnimData.h"
 #include "Field.h"
 #include "Bullet.h"
+#include "Map.h"
 Player::Player(const CVector2D& p, bool flip) :
 	Base(eType_Player) {
 	//画像複製
@@ -9,7 +10,7 @@ Player::Player(const CVector2D& p, bool flip) :
 	//再生アニメーション設定
 	m_img.ChangeAnimation(0);
 	//座標設定
-	m_pos = p;
+	m_pos_old = m_pos = p;
 	//中心位置設定
 	m_img.SetCenter(128, 224);
 	m_img.SetSize(100, 100);
@@ -114,9 +115,10 @@ void Player::StateDown()
 
 
 void Player::Update() {
-	m_img.ChangeAnimation(3);
+	m_img.ChangeAnimation(5);
 	m_img.UpdateAnimation();
 	return;
+	m_pos_old = m_pos;
 	switch (m_state) {
 		//通常状態
 	case eState_Idle:
@@ -157,23 +159,26 @@ void Player::Draw() {
 void Player::Collision(Base* b)
 {
 	switch (b->m_type) {
-	case eType_Field:
-		//Field型へキャスト、型変換できたら
-		if (Field* f = dynamic_cast<Field*>(b)) {
-			//地面より下にいったら
-			//if (m_pos.y > f->GetGroundY()) {
-				//地面の高さに戻す
-				//m_pos.y = f->GetGroundY();
+	case eType_Map:
+		if (Map* m = dynamic_cast<Map*>(b)) {
+			int t;
+			t = m->CollisionPoint(CVector2D(m_pos.x, m_pos_old.y));
+			if (t != 0) {
+				m_pos.x = m_pos_old.x;
+			}
+			t = m->CollisionPoint(CVector2D(m_pos_old.x, m_pos.y));
+			if (t != 0) {
+				m_pos.y = m_pos_old.y;
 				//落下速度リセット
 				m_vec.y = 0;
 				//接地フラグON
 				m_is_ground = true;
 			}
 		}
-		//break;
+		break;
 	}
+}
 
-//}
 
 static TexAnim playerIdle[] = {
 	
@@ -209,17 +214,25 @@ static TexAnim playerAttack01[] = {
 	{ 49,7 },
 };
 static TexAnim playerCrouchi[] = {
-	{ 5,2 },
-	{ 6,2 },
-	{ 7,2 },
+	{ 4,10 },
+	{ 5,10 },
+	{ 6,10 },
+	{ 7,10 },
 	
 };
-
+static TexAnim playerDown[] = {
+	{ 64,18 },
+	{ 65,18 },
+	{ 66,18 },
+	{ 67,18 },
+	{ 68,18 },
+	{ 69,18 },
+};
 TexAnimData player_anim_data[] = {
 	ANIMDATA(playerIdle),
 	ANIMDATA(playerBattou),
 	ANIMDATA(playerStep),
 	ANIMDATA(playerAttack01),
 	ANIMDATA(playerCrouchi),
-	//ANIMDATA(playerDown),
+	ANIMDATA(playerDown),
 };
