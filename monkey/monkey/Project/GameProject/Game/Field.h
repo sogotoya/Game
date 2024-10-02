@@ -4,7 +4,7 @@
 class Field :public Base {
 private:
     //画像オブジェクト（前景）
-    CImage m_foreground;
+    CImage m_forMap_Tip;
     //画像オブジェクト（遠景）
     CImage m_town;
     //画像オブジェクト（最遠景）

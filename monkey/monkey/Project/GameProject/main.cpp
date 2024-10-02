@@ -112,7 +112,7 @@ void Init(void)
 	Base::Add(new Enemy3(CVector2D(200, 200), true));
 	ADD_RESOURCE("sky", CImage::CreateImage("Image/haikei2.png"));
 	Base::Add(new Field(CVector2D(960, 540)));
-
+	
 
 	//è\âÕ
 	ADD_RESOURCE("Enemy2", CImage::CreateImage("Image/gobuta.png", enemy2_anim_data, 150, 150));
