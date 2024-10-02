@@ -103,15 +103,37 @@ void Enemy2::StateIdle()
 
 void Enemy2::StateAttack()
 {
-	
+	//攻撃アニメーションへ変更
+	m_img.ChangeAnimation(eAnimAttack01, false);
+	if (m_img.GetIndex() == 3) {
+		if (m_flip) {
+			//Base::Add(new Slash(m_pos + CVector2D(-64, -64), m_flip, eType_Enemmy_Attack, m_attack_no));
+		}
+		else {
+			//Base::Add(new Slash(m_pos + CVector2D(64, -64), m_flip, eType_Enemmy_Attack, m_attack_no));
+		}
+	}
+	//アニメーションが終了したら
+	if (m_img.CheckAnimationEnd()) {
+		//通常状態へ移行
+		m_state = eState_Idle;
+	}
 }
 
 void Enemy2::StateDamage()
 {
+	m_img.ChangeAnimation(eAnimDamage, false);
+	if (m_img.CheckAnimationEnd()) {
+		m_state = eState_Idle;
+	}
 }
 
 void Enemy2::StateDown()
 {
+	m_img.ChangeAnimation(eAnimDown, false);
+	if (m_img.CheckAnimationEnd()) {
+		m_kill = true;
+	}
 }
 
 Enemy2::Enemy2(const CVector2D& pos, bool flip)
@@ -143,7 +165,7 @@ Enemy2::Enemy2(const CVector2D& pos, bool flip)
 void Enemy2::Update()
 {
 	//待機
-	m_img.ChangeAnimation(eAnimIdle);//(3)
+	m_img.ChangeAnimation(0);//(3)
 	//更新
 	m_img.UpdateAnimation();
 	//落ちていたら落下状態へ
@@ -169,23 +191,21 @@ void Enemy2::Draw()
 
 void Enemy2::Collision(Base* b)
 {
-	/*switch (b->m_type) {
-		//攻撃オブジェクトとの判定
-	case eType_Player_Attack:
-		//Slash型へキャスト、型変換できたら
-		if (Slash* s = dynamic_cast<Slash*>(b)) {
-			if (m_damage_no != s->GetAttacNO() && Base::CollisionRect(this, s)) {
-				//同じ攻撃の連続ダメージの防止
-				m_damage_no = s->GetAttacNO();
-				m_hp -= 50;
-				if (m_hp <= 0) {
-					m_state = eState_Down;
-				}
-				else {
-					m_state = eState_Damage;
-				}
-				Base::Add(new Effect("Effect_Blood", m_pos + CVector2D(0, -128), m_flip));
+	switch (b->m_type) {
+	case eType_Field:
+		//Field型へキャスト、型変換できたら
+		if (Field* f = dynamic_cast<Field*>(b)) {
+			//地面より下にいったら
+			if (m_pos.y > f->GetGroundY()) {
+				//地面の高さに戻す
+				m_pos.y = f->GetGroundY();
+				//落下速度リセット
+				m_vec.y = 0;
+				//接地フラグON
+				m_is_ground = true;
 			}
 		}
-		break;*/
+		break;
+	}
+
 }

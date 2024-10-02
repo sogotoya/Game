@@ -1,5 +1,5 @@
 #include "TP.h"
-
+//–³Œø
 Tp::Tp(const CVector2D& pos, const CVector2D& next)
 	:Base(eType_Tp)
 {

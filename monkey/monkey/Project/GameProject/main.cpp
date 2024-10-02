@@ -7,7 +7,7 @@
 #include"Game/Enemy3.h"
 #include"Game/Enemy2.h"
 #include"Game/Game.h"
-
+#include"Game/TP.h"
 
 
 
@@ -120,7 +120,7 @@ void Init(void)
 	ADD_RESOURCE("Map_Tip", CImage::CreateImage("Image/kusa.png"));
 	Base::Add(new Map());
 	ADD_RESOURCE("Tp", CImage::CreateImage("Image/tp.png"));
-	//Base::Add(new Tp)
+	
 
 //èºë∫
 	ADD_RESOURCE("Player", CImage::CreateImage("Image/pureiya-3.png", player_anim_data, 50, 37));
