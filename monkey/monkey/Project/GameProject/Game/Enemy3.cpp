@@ -1,6 +1,7 @@
 #include "Enemy3.h"
 #include"AnimData.h"
 #include "../Base/Base.h"
+#include"Field.h"
 
 
 Enemy3::Enemy3(const CVector2D& pos, bool flip) :Base(eType_Enemy3)
@@ -196,4 +197,20 @@ void Enemy3::Draw()
 
 void Enemy3::Collision(Base* b)
 {
+    switch (b->m_type) {
+    case eType_Field:
+        //Field型へキャスト、型変換できたら
+        if (Field* f = dynamic_cast<Field*>(b)) {
+            //地面より下にいったら
+            if (m_pos.y > f->GetGroundY()) {
+                //地面の高さに戻す
+                m_pos.y = f->GetGroundY();
+                //落下速度リセット
+                m_vec.y = 0;
+                //接地フラグON
+                m_is_ground = true;
+            }
+        }
+        break;
+    }
 }
