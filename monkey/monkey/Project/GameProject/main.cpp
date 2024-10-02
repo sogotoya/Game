@@ -119,8 +119,8 @@ void Init(void)
 	Base::Add(new Enemy2(CVector2D(100, 100), true));
 	ADD_RESOURCE("Map_Tip", CImage::CreateImage("Image/kusa.png"));
 	Base::Add(new Map());
-	
-
+	ADD_RESOURCE("Tp", CImage::CreateImage("Image/tp.png"));
+	//Base::Add(new Tp)
 
 //èºë∫
 	ADD_RESOURCE("Player", CImage::CreateImage("Image/pureiya-3.png", player_anim_data, 50, 37));
