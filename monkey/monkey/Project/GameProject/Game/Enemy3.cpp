@@ -72,6 +72,7 @@ void Enemy3::StateIdle() {
 }
 void Enemy3::StateAttack01()
 {
+
     //攻撃アニメーションへ変更
     m_img.ChangeAnimation(eAnimAttack01, false);
     //3番目のパターンなら
