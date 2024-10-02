@@ -125,8 +125,8 @@ void Init(void)
 //èºë∫
 	ADD_RESOURCE("Player", CImage::CreateImage("Image/pureiya-3.png", player_anim_data, 50, 37));
 	Base::Add(new Player(CVector2D(400, 400), true));
-	//ADD_RESOURCE("Enemy1", CImage::CreateImage("Image/Bat.png", Enemy1_anim_data, 150, 150));
-	//Base::Add(new Enemy1(CVector2D(300, 300), true));
+	ADD_RESOURCE("Enemy1", CImage::CreateImage("Image/Bat.png", Enemy1_anim_data, 150, 150));
+	Base::Add(new Enemy1(CVector2D(300, 300), true));
 
 
 

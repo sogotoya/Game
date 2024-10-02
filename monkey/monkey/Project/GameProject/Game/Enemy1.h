@@ -35,4 +35,4 @@ public:
 	void Collision(Base* b);
 
 };
-extern TexAnimData player_anim_data[];
+extern TexAnimData Enemy1_anim_data[];

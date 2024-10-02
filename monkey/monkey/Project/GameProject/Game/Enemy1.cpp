@@ -66,7 +66,7 @@ void Enemy1::StateDown()
 }
 Enemy1::Enemy1(const CVector2D& p, bool flip) :Base(eType_Enemy) {
 	//画像複製
-	m_img = COPY_RESOURCE("Enemy", CImage);
+	m_img = COPY_RESOURCE("Enemy1", CImage);
 	//再生アニメーション設定
 	m_img.ChangeAnimation(0);
 	//座標設定
@@ -91,6 +91,8 @@ Enemy1::Enemy1(const CVector2D& p, bool flip) :Base(eType_Enemy) {
 
 void Enemy1::Update()
 {
+	m_img.ChangeAnimation(2);
+	m_img.UpdateAnimation();
 	switch (m_state) {
 		//通常状態
 	case eState_Idle:
@@ -211,7 +213,7 @@ static TexAnim enemy1Down[] = {
 	{ 68,18 },
 	{ 69,18 },
 };
-TexAnimData enemy1_anim_data[] = {
+TexAnimData Enemy1_anim_data[] = {
 	ANIMDATA(enemy1Idle),
 	ANIMDATA(enemy1Battou),
 	ANIMDATA(enemy1Step),

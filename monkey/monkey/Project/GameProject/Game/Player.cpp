@@ -117,7 +117,7 @@ void Player::StateDown()
 void Player::Update() {
 	m_img.ChangeAnimation(5);
 	m_img.UpdateAnimation();
-	return;
+	
 	m_pos_old = m_pos;
 	switch (m_state) {
 		//通常状態
@@ -160,16 +160,13 @@ void Player::Draw() {
 void Player::Collision(Base* b)
 {
 	switch (b->m_type) {
-	case eType_Map:
-		if (Map* m = dynamic_cast<Map*>(b)) {
-			int t;
-			t = m->CollisionPoint(CVector2D(m_pos.x, m_pos_old.y));
-			if (t != 0) {
-				m_pos.x = m_pos_old.x;
-			}
-			t = m->CollisionPoint(CVector2D(m_pos_old.x, m_pos.y));
-			if (t != 0) {
-				m_pos.y = m_pos_old.y;
+	case eType_Field:
+		//Field型へキャスト、型変換できたら
+		if (Field* f = dynamic_cast<Field*>(b)) {
+			//地面より下にいったら
+			if (m_pos.y > f->GetGroundY()) {
+				//地面の高さに戻す
+				m_pos.y = f->GetGroundY();
 				//落下速度リセット
 				m_vec.y = 0;
 				//接地フラグON
@@ -179,7 +176,6 @@ void Player::Collision(Base* b)
 		break;
 	}
 }
-
 
 static TexAnim playerIdle[] = {
 	
