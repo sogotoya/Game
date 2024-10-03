@@ -215,13 +215,13 @@ static TexAnim playerStep[] = {
 	
 };
 static TexAnim playerAttack01[] = {
-	{ 43,4 },
-	{ 44,0 },
-	{ 45,0 },
-	{ 46,0 },
-	{ 47,0 },
-	{ 48,0 },
-	{ 49,0 },
+	{ 43,2 },
+	{ 44,2 },
+	{ 45,2 },
+	{ 46,2 },
+	{ 47,2 },
+	{ 48,2 },
+	{ 49,2 },
 };
 static TexAnim playerAttack02[] = {
 	{ 43,0 },

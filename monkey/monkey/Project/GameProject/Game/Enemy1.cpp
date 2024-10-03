@@ -1,6 +1,6 @@
 #include "Enemy1.h"
 #include "AnimData.h"
-#include "Field.h"
+#include "Map.h"
 
 void Enemy1::StateIdle()
 {
