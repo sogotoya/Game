@@ -5,11 +5,12 @@
 //縦
 #define MAP_HEIGHT 150  //250
 //大きさ
-#define MAP_TIP_SIZE  220 //128
+#define MAP_TIP_SIZE  150 //128
 
 class Map : public Base {
 private:
 	CImage m_background;
+	CImage m_haikei;
 	CImage m_img;
 	int m_state;
 	//地面の高さ
@@ -26,7 +27,10 @@ public:
 	}
 	//マップとの当たり判定
 	int CollisionPoint(const CVector2D& pos);
+	//マップとの当たり判定
+	int CollisionRect(const CVector2D& pos, const CRect& rect);
 	int stage[MAP_HEIGHT][MAP_WIDTH];
+
 };
 
 
