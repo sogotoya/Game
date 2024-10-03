@@ -1,5 +1,4 @@
 #include "Enemy3.h"
-#include"AnimData.h"
 #include "../Base/Base.h"
 #include"Map.h"
 
@@ -23,7 +22,7 @@ Enemy3::Enemy3(const CVector2D& pos, bool flip) :Base(eType_Enemy3)
     
 }
 void Enemy3::StateIdle() {
-    /*//移動量
+    //移動量
     const float move_speed = 6;
     //移動フラグ
     bool move_flag = false;
@@ -63,27 +62,27 @@ void Enemy3::StateIdle() {
     //移動中なら
     if (move_flag) {
         //走るアニメーション
-        m_img.ChangeAnimation(eAnimStep);
+        m_img.ChangeAnimation(E3ran);
     }
     else {
         //待機アニメーション
-        m_img.ChangeAnimation(eAnimIdle);
-    }*/
+        m_img.ChangeAnimation(E3Step);
+    }
 }
 void Enemy3::StateAttack01()
 {
 
     //攻撃アニメーションへ変更
-    m_img.ChangeAnimation(eAnimAttack01, false);
+    m_img.ChangeAnimation(E3Attack01, false);
     //3番目のパターンなら
-    if (m_img.GetIndex() == 3) {
+    /*if (m_img.GetIndex() == 3) {
         if (m_flip) {
            // Base::Add(new Slash(m_pos + CVector2D(-64, -64), m_flip, eType_Enemy_Attack, m_attack_no));
         }
         else {
            // Base::Add(new Slash(m_pos + CVector2D(64, -64), m_flip, eType_Enemy_Attack, m_attack_no));
         }
-    }
+    }*/
     //アニメーションが終了したら
     if (m_img.CheckAnimationEnd()) {
         //通常状態へ移行
@@ -94,16 +93,16 @@ void Enemy3::StateAttack01()
 void Enemy3::StateAttack02()
 {
     //攻撃アニメーションへ変更
-    m_img.ChangeAnimation(eAnimAttack01, false);
+    m_img.ChangeAnimation(E3Attack02, false);
     //3番目のパターンなら
-    if (m_img.GetIndex() == 3) {
+    /*if (m_img.GetIndex() == 3) {
         if (m_flip) {
             // Base::Add(new Slash(m_pos + CVector2D(-64, -64), m_flip, eType_Enemy_Attack, m_attack_no));
         }
         else {
             // Base::Add(new Slash(m_pos + CVector2D(64, -64), m_flip, eType_Enemy_Attack, m_attack_no));
         }
-    }
+    }*/
     //アニメーションが終了したら
     if (m_img.CheckAnimationEnd()) {
         //通常状態へ移行
@@ -114,16 +113,16 @@ void Enemy3::StateAttack02()
 void Enemy3::StateAttack03()
 {
     //攻撃アニメーションへ変更
-    m_img.ChangeAnimation(eAnimAttack01, false);
+    m_img.ChangeAnimation(E3Attack03, false);
     //3番目のパターンなら
-    if (m_img.GetIndex() == 3) {
+    /*if (m_img.GetIndex() == 3) {
         if (m_flip) {
             // Base::Add(new Slash(m_pos + CVector2D(-64, -64), m_flip, eType_Enemy_Attack, m_attack_no));
         }
         else {
             // Base::Add(new Slash(m_pos + CVector2D(64, -64), m_flip, eType_Enemy_Attack, m_attack_no));
         }
-    }
+    }*/
     //アニメーションが終了したら
     if (m_img.CheckAnimationEnd()) {
         //通常状態へ移行
@@ -133,14 +132,14 @@ void Enemy3::StateAttack03()
 }
 void Enemy3::StateDamage()
 {
-    m_img.ChangeAnimation(eAnimDamage, false);
+    m_img.ChangeAnimation(E3Dmg, false);
     if (m_img.CheckAnimationEnd()) {
        m_state = eState_Idle;
     }
 }
 void Enemy3::StateDown()
 {
-    m_img.ChangeAnimation(eAnimDown, false);
+    m_img.ChangeAnimation(E3Down, false);
     if (m_img.CheckAnimationEnd()) {
        // Base::Add(new Effect("Effect_Smoke", m_pos + CVector2D(0, 0), m_flip));
         m_kill = true;
@@ -149,7 +148,7 @@ void Enemy3::StateDown()
 
 void Enemy3::Update()
 {
-    //m_img.ChangeAnimation(1);
+    //m_img.ChangeAnimation(5);
     //m_img.UpdateAnimation();
     //return;
     switch (m_state) {
@@ -184,16 +183,18 @@ void Enemy3::Update()
     //重力による落下
     m_vec.y += GRAVITY;
     m_pos += m_vec;
-
+    //アニメーションの更新
+    m_img.UpdateAnimation();
 }
 
 void Enemy3::Draw()
 {
     m_img.SetPos(m_pos);
- 
+    m_img.SetFlipH(m_flip);
     //描画
     m_img.Draw();
     //当たり判定矩形の表示
+    //DrawRect();
 }
 
 void Enemy3::Collision(Base* b)
@@ -215,3 +216,126 @@ void Enemy3::Collision(Base* b)
         break;
     }
 }
+static TexAnim Enemy3Ran[] = {
+    { 23,5 },
+    { 24,5 },
+    { 25,5 },
+    { 26,5 },
+    { 27,5 },
+    { 28,5 },
+    { 29,5 },
+    { 30,5 },
+    { 31,5 },
+
+};
+static TexAnim Enemy3Attack01[] = {
+    //弓
+
+    { 242,5 },
+    { 243,5 },
+    { 244,10 },
+    { 245,11 },
+    { 246,12 },
+    { 247,13 },
+    { 248,14 },
+    { 249,15 },
+    { 250,10 },
+    { 251,9},
+    { 252,7 },
+    { 253,6 },
+    { 254,5 },
+    { 255,5 },
+    { 256,5 },
+
+
+
+};
+static TexAnim Enemy3Attack02[] = {
+    //近接攻撃
+
+{220,10},
+{ 221,10 },
+{ 222,10 },
+{ 223,8 },
+{ 224,8 },
+{ 225,8 },
+{ 226,8 },
+{ 227,8 },
+{ 228,8 },
+{ 229,8 },
+
+
+
+};
+
+static TexAnim Enemy3Attack03[] = {
+    //俺はハンターだ！！..........
+    { 288,10},
+    { 289,10},
+    { 290,10},
+    { 291,10},
+    { 292,20},
+    { 293,20},
+    { 294,20},
+    { 295,10 },
+    { 296,10 },
+    { 297,9 },
+    { 298,9 },
+    { 299,8 },
+    { 300,7 },
+    { 301,6 },
+    { 302,6 },
+
+};
+static TexAnim Enemy3Step[] = {
+    { 0,6 },
+    { 1,6 },
+    { 2,6 },
+    { 3,6 },
+    { 4,6 },
+    { 5,6 },
+    { 6,6 },
+    { 7,6},
+    { 8,6},
+    { 9,6},
+    { 10,6},
+    { 11,6},
+};
+static TexAnim Enemy3Dmg[] = {
+    {133,9},
+    {134,9},
+    {135,9},
+    {136,9},
+    {137,9},
+    {138,9},
+};
+static TexAnim Enemy3Down[] = {
+    {155,9},
+    {156,9},
+    {157,9},
+    {158,9},
+    {159,9},
+    {160,9},
+    {161,9},
+    {162,9},
+    {163,9},
+    {164,9},
+    {165,9},
+    {166,9},
+    {167,9},
+    {168,9},
+    {169,9},
+    {170,9},
+    {171,9},
+    {172,9},
+    {173,9},
+};
+TexAnimData enemy3_anim_data[] = {
+    ANIMDATA(Enemy3Ran),
+    ANIMDATA(Enemy3Attack01),
+    ANIMDATA(Enemy3Attack02),
+    ANIMDATA(Enemy3Attack03),
+    ANIMDATA(Enemy3Step),
+    ANIMDATA(Enemy3Dmg),
+    ANIMDATA(Enemy3Down),
+};

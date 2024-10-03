@@ -32,5 +32,5 @@ enum {
 //プレイヤーのアニメーションデータ
 
 //敵のアニメーションデータ
-extern TexAnimData enemy3_anim_data[];
+//extern TexAnimData enemy3_anim_data[];
 

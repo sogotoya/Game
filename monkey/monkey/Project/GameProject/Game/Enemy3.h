@@ -12,6 +12,15 @@ private:
 		eState_Damage,
 		eState_Down,
 	};
+	enum {
+		E3ran,
+		E3Attack01,
+		E3Attack02,
+		E3Attack03,
+		E3Step,
+		E3Dmg,
+		E3Down,
+	};
 	//状態変数
 	int m_state;
 	CImage m_img;
@@ -42,4 +51,5 @@ public:
 	void Draw();
 	void Collision(Base* b);
 };
-
+//敵のアニメーションデータ
+extern TexAnimData enemy3_anim_data[];

@@ -2,6 +2,7 @@
 #include "Map.h"
 #include "../Base/Base.h"
 
+
 static TexAnim Enemy2Step[] = {//0
 
 	{ 16,8 },

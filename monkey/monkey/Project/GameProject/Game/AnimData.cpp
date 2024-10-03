@@ -1,6 +1,6 @@
 #include"AnimData.h"
 
-static TexAnim Enemy3Step[] = {
+/*static TexAnim Enemy3Step[] = {
 	{ 23,5 },
 	{ 24,5 },
 	{ 25,5 },
@@ -77,4 +77,4 @@ TexAnimData enemy3_anim_data[] = {
 	ANIMDATA(Enemy3Attack02),
 	ANIMDATA(Enemy3Attack03),
 	
-};
+};*/
