@@ -12,6 +12,8 @@ private:
 	CImage m_background;
 	CImage m_img;
 	int m_state;
+	//地面の高さ
+	float m_Map_Tip;
 public:
 	Map();
 	void Draw();
@@ -19,6 +21,9 @@ public:
 	int GetTip(const CVector2D& pos, int* tx = nullptr, int* ty = nullptr);
 	//指定列、指定行のマップチップを取得
 	int GetTip(int x, int y);
+	float GetGroundY() {
+		return m_Map_Tip;
+	}
 	//マップとの当たり判定
 	int CollisionPoint(const CVector2D& pos);
 	int stage[MAP_HEIGHT][MAP_WIDTH];

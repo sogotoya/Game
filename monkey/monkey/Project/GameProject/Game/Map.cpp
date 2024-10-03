@@ -26,6 +26,7 @@ Map::Map() :Base(eType_Map)
     m_background = COPY_RESOURCE("BackGround", CImage);
     m_background.SetSize(1920, 1080);
     memcpy(stage, stage1data, sizeof(stage1data));
+    m_Map_Tip = 1000;
 }
 
 void Map::Draw()

@@ -16,10 +16,6 @@ private:
 public:
 	CImage m_img;
 	Field(const CVector2D& pos);
-    //’n–Ê‚Ì‚‚³‚ğŠl“¾
-    float GetGroundY() {
-        return m_Map_Tip;
-    }
 	void Update();
 	void Draw();
 };
