@@ -1,6 +1,5 @@
 #include "Player.h"
 #include "AnimData.h"
-#include "Field.h"
 #include "Bullet.h"
 #include "Map.h"
 Player::Player(const CVector2D& p, bool flip) :
