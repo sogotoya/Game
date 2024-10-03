@@ -5,7 +5,7 @@
 //c
 #define MAP_HEIGHT 150  //250
 //‘å‚«‚³
-#define MAP_TIP_SIZE  100  //128
+#define MAP_TIP_SIZE  220 //128
 
 class Map : public Base {
 private:
