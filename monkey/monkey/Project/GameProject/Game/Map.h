@@ -1,15 +1,16 @@
 #pragma once
 #include "../Base/Base.h"
 //‰¡
-#define MAP_WIDTH  150
+#define MAP_WIDTH  400  //250   
 //c
-#define MAP_HEIGHT 150
+#define MAP_HEIGHT 400  //250
 //‘å‚«‚³
-#define MAP_TIP_SIZE 150
+#define MAP_TIP_SIZE  26   //128
 
 class Map : public Base {
 private:
 	CImage m_img;
+	int m_state;
 public:
 	Map();
 	void Draw();
@@ -20,4 +21,5 @@ public:
 	//ƒ}ƒbƒv‚Æ‚Ì“–‚½‚è”»’è
 	int CollisionPoint(const CVector2D& pos);
 };
+
 

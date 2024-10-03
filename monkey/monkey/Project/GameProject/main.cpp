@@ -110,15 +110,15 @@ void Init(void)
 	//Base::Add(new Field(CVector2D(960, 540)));
 	ADD_RESOURCE("Enemy3", CImage::CreateImage("Image/sova.png", enemy3_anim_data, 288,128 ));
 	Base::Add(new Enemy3(CVector2D(200, 200), true));
-	ADD_RESOURCE("sky", CImage::CreateImage("Image/haikei2.png"));
+	ADD_RESOURCE("sky", CImage::CreateImage("Image/haikei.png"));
 	Base::Add(new Field(CVector2D(960, 540)));
 	
 
 	//è\âÕ
 	ADD_RESOURCE("Enemy2", CImage::CreateImage("Image/gobuta.png", enemy2_anim_data, 150, 150));
 	Base::Add(new Enemy2(CVector2D(100, 100), true));
-	ADD_RESOURCE("Map_Tip", CImage::CreateImage("Image/kusa.png"));
-	Base::Add(new Map());
+	ADD_RESOURCE("Map_Tip1", CImage::CreateImage("Image/pa-tu.png" ));
+	Base::Add(new Map);
 	ADD_RESOURCE("Tp", CImage::CreateImage("Image/tp.png"));
 	
 
