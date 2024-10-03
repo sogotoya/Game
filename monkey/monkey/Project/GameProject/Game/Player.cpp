@@ -201,7 +201,7 @@ void Player::Draw() {
 	//•`‰æ
 	m_img.Draw();
 	//“–‚½‚è”»’è‹éŒ`•\Ž¦
-	DrawRect();
+	//DrawRect();
 }
 void Player::Collision(Base* b)
 {

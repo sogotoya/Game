@@ -8,7 +8,7 @@
 #include"Game/Enemy2.h"
 #include"Game/Game.h"
 #include"Game/TP.h"
-
+#include"Game/Bar.h"
 
 
 
@@ -113,8 +113,9 @@ void Init(void)
 	//ADD_RESOURCE("sky", CImage::CreateImage("Image/haikei.png"));
 	//Base::Add(new Field(CVector2D(960, 540)));
 	ADD_RESOURCE("BackGround", CImage::CreateImage("Image/haikei.png"));
+	ADD_RESOURCE("bar", CImage::CreateImage("Image/bar.png"));
+	Base::Add(new bar(CVector2D(200, 200), true));
 	
-
 	//è\âÕ
 	ADD_RESOURCE("Enemy2", CImage::CreateImage("Image/gobuta.png", enemy2_anim_data, 150, 150));
 	Base::Add(new Enemy2(CVector2D(100, 100), true));
@@ -128,7 +129,7 @@ void Init(void)
 	Base::Add(new Player(CVector2D(400, 400), true));
 	ADD_RESOURCE("Enemy1", CImage::CreateImage("Image/Bat.png", Enemy1_anim_data, 150, 150));
 	Base::Add(new Enemy1(CVector2D(300, 300), true));
-
+	
 
 
 

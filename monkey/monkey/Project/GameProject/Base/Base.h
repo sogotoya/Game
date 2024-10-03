@@ -18,7 +18,7 @@ enum {
     eType_Scene,
     //ûMŒ³
     eType_Enemy3,
-
+    eType_bar,
     //\‰Í
     eType_Enemy2,
 
