@@ -173,7 +173,7 @@ void Player::Collision(Base* b)
 	switch (b->m_type) {
 	case eType_Field:
 		//Field型へキャスト、型変換できたら
-		if (Field* f = dynamic_cast<Field*>(b)) {
+		if (Map* f = dynamic_cast<Map*>(b)) {
 			//地面より下にいったら
 			if (m_pos.y > f->GetGroundY()) {
 				//地面の高さに戻す
