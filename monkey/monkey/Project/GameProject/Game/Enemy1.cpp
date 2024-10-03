@@ -132,7 +132,7 @@ void Enemy1::Draw()
 void Enemy1::Collision(Base* b)
 {
 	switch (b->m_type) {
-	case eType_Field:
+	case eType_Map:
 		//Field型へキャスト、型変換できたら
 		if (Map* f = dynamic_cast<Map*>(b)) {
 			//地面より下にいったら
