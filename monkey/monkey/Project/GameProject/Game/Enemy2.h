@@ -9,6 +9,12 @@ private:
 		eState_Damage,
 		eState_Down,
 	};
+	enum {
+		e2step,
+		e2Anim_Attack,
+		e2Animdie,
+		e2AnimRun,
+	};
 	//ó‘Ô•Ï”
 	int m_state;
 	CImage m_img;

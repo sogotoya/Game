@@ -1,6 +1,4 @@
 #include "Enemy2.h"
-#include "AnimData.h"
-
 #include "Map.h"
 #include "../Base/Base.h"
 
@@ -62,7 +60,7 @@ void Enemy2::StateIdle()//ジャンプなし
 			//移動量を設定
 			m_pos.x += -move_speed;
 			//反転フラグ
-			m_flip = false;//true
+			m_flip = true;
 			move_flag = true;
 		}
 		//右移動
@@ -93,18 +91,18 @@ void Enemy2::StateIdle()//ジャンプなし
 	}
 	if (move_flag) {
 		//走るアニメーション
-		m_img.ChangeAnimation(eAnimRun);
+		m_img.ChangeAnimation(e2AnimRun);
 	}
 	else {
 		//待機アニメーション
-		m_img.ChangeAnimation(eAnimIdle);
+		m_img.ChangeAnimation(e2step);
 	}
 }
 
 void Enemy2::StateAttack()
 {
 	//攻撃アニメーションへ変更
-	m_img.ChangeAnimation(eAnimAttack01, false);
+	m_img.ChangeAnimation(e2Anim_Attack, false);
 	//?番目のアニメーションの時発動
 	/*if (m_img.GetIndex() == ? ) {
 		if (m_flip) {
@@ -123,7 +121,7 @@ void Enemy2::StateAttack()
 
 void Enemy2::StateDamage()
 {
-	m_img.ChangeAnimation(eAnimDamage, false);
+	m_img.ChangeAnimation(e2Anim_Attack, false);
 	if (m_img.CheckAnimationEnd()) {
 		m_state = eState_Idle;
 	}
@@ -131,7 +129,7 @@ void Enemy2::StateDamage()
 
 void Enemy2::StateDown()
 {
-	m_img.ChangeAnimation(eAnimDown, false);
+	m_img.ChangeAnimation(e2Animdie, false);
 	if (m_img.CheckAnimationEnd()) {
 		m_kill = true;
 	}
@@ -172,8 +170,8 @@ void Enemy2::Update()
 		StateIdle();
 		break;
 		//攻撃
-	//case eState_Attack:
-		//StateAttack();
+	case eState_Attack:
+		StateAttack();
 		break;
 		//ダメージ
 	case eState_Damage:
@@ -230,7 +228,22 @@ void Enemy2::Collision(Base* b)
 		break;*/
 
 	case eType_Player_Attack:
-		
+		//Slash型へキャスト、型変換できたら
+		/*if (Slash* s = dynamic_cast<Slash*>(b)) {
+			if (m_damage_no != s->GetAttacNO() && Base::CollisionRect(this, s)) {
+				//同じ攻撃の連続ダメージの防止
+				m_damage_no = s->GetAttacNO();
+				m_hp -= 50;
+				if (m_hp <= 0) {
+					m_state = eState_Down;
+				}
+				else {
+					m_state = eState_Damage;
+				}
+				Base::Add(new Effect("Effect_Blood", m_pos + CVector2D(0, -128), m_flip));
+			}
+		}
+		break;*/
 		
 	case eType_Field:
 		//Field型へキャスト、型変換できたら
