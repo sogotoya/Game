@@ -154,7 +154,6 @@ static TexAnim enemy1Idle[] = {
 	{ 1,18 },
 	{ 2,18 },
 	{ 3,18 },
-
 };
 static TexAnim enemy1Battou[] = {
 
