@@ -89,8 +89,20 @@ void Player::StateIdle()
 
 void Player::StateAttack()
 {
+	float move_speed = 6;
+
 	//攻撃アニメーションへ変更
 	m_img.ChangeAnimation(eAnimAttack01, false);
+	//if(m_img.GetIndex()>=2 && m_img.GetIndex()<=4)
+	if (m_is_ground == false) {
+		if (m_flip == false)
+			m_pos.x += move_speed;
+		if (m_flip == true)
+		    m_pos.x -= move_speed;
+
+	}
+
+	
 	//アニメーションが終了したら
 	if (m_img.CheckAnimationEnd()) {
 		//通常状態へ移行
@@ -171,6 +183,7 @@ void Player::Collision(Base* b)
 				m_vec.y = 0;
 				//接地フラグON
 				m_is_ground = true;
+
 			}
 		}
 		break;
@@ -202,13 +215,13 @@ static TexAnim playerStep[] = {
 	
 };
 static TexAnim playerAttack01[] = {
-	{ 43,7 },
-	{ 44,7 },
-	{ 45,7 },
-	{ 46,7 },
-	{ 47,7 },
-	{ 48,7 },
-	{ 49,7 },
+	{ 43,0 },
+	{ 44,0 },
+	{ 45,0 },
+	{ 46,0 },
+	{ 47,0 },
+	{ 48,0 },
+	{ 49,0 },
 };
 static TexAnim playerCrouchi[] = {
 	{ 4,10 },
@@ -227,9 +240,11 @@ static TexAnim playerDown[] = {
 };
 TexAnimData player_anim_data[] = {
 	ANIMDATA(playerIdle),
-	ANIMDATA(playerBattou),
 	ANIMDATA(playerStep),
+	ANIMDATA(playerBattou),
 	ANIMDATA(playerCrouchi),
-	ANIMDATA(playerDown),
 	ANIMDATA(playerAttack01),
+	ANIMDATA(playerDown),
+	
 };
+
