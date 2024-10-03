@@ -115,7 +115,7 @@ void Enemy1::Update()
 
 	//アニメーション更新
 	m_img.UpdateAnimation();
-	m_scroll.x = m_pos.x - 1280 / 2;
+	
 
 }
 
