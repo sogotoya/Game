@@ -11,14 +11,16 @@ Player::Player(const CVector2D& p, bool flip) :
 	//座標設定
 	m_pos_old = m_pos = p;
 	//中心位置設定
-	m_img.SetCenter(128, 224);
+	m_img.SetCenter(50, 100);
 	m_img.SetSize(100, 100);
+	m_rect = CRect(-30,-90, 30, 0);
 	//反転フラグ
 	m_flip = flip;
 	//通常状態へ
 	m_state = eState_Idle;
 	//着地フラグ
 	m_is_ground = true;
+
 
 
 }
@@ -52,7 +54,7 @@ void Player::StateIdle()
 		//Base::Add(new Slash(m_pos + CVector2D(64, -64), m_flip, eType_Player_Attack, 0));
 	}
 	//ジャンプ力
-	const float jump_pow = 12;
+	const float jump_pow = 15;
 
 	//ジャンプ
 	if (m_is_ground && PUSH(CInput::eButton2)) {
@@ -198,11 +200,30 @@ void Player::Draw() {
 	m_img.SetFlipH(m_flip);
 	//描画
 	m_img.Draw();
+	//当たり判定矩形表示
+	DrawRect();
 }
 void Player::Collision(Base* b)
 {
+
 	switch (b->m_type) {
 	case eType_Map:
+		if (Map* m = dynamic_cast<Map*>(b)) {
+			int t;
+			t = m->CollisionRect(CVector2D(m_pos.x, m_pos_old.y), m_rect);
+			if (t != 0) {
+				m_pos.x = m_pos_old.x;
+			}
+			t = m->CollisionRect(CVector2D(m_pos_old.x, m_pos.y), m_rect);
+			if (t != 0) {
+				m_pos.y = m_pos_old.y;
+				//落下速度リセット
+				m_vec.y = 0;
+				//接地フラグON
+				m_is_ground = true;
+			}
+		}
+	/*case
 		//Field型へキャスト、型変換できたら
 		if (Map* f = dynamic_cast<Map*>(b)) {
 			//地面より下にいったら
@@ -216,7 +237,7 @@ void Player::Collision(Base* b)
 
 			}
 		}
-		break;
+		break;*/
 	}
 }
 
