@@ -15,8 +15,8 @@ static TexAnim Enemy2Step[] = {//0
 	
 };
 static TexAnim Enemy2Attack[] = {//1
-	{ 0,10 },
-	{ 1,10 },
+	{ 0,8 },
+	{ 1,8 },
 	{ 2,10 },
 	{ 3,10 },
 	{ 4,6 },
@@ -48,10 +48,10 @@ TexAnimData enemy2_anim_data[] = {
 	ANIMDATA(Enemy2ran),//3
 };
 
-void Enemy2::StateIdle()
+void Enemy2::StateIdle()//ジャンプなし
 {
 	//移動量
-	const float move_speed = 6;
+	const float move_speed = 3;
 	//移動フラグ
 	bool move_flag = false;
 
@@ -62,7 +62,7 @@ void Enemy2::StateIdle()
 			//移動量を設定
 			m_pos.x += -move_speed;
 			//反転フラグ
-			m_flip = true;
+			m_flip = false;//true
 			move_flag = true;
 		}
 		//右移動
@@ -105,14 +105,15 @@ void Enemy2::StateAttack()
 {
 	//攻撃アニメーションへ変更
 	m_img.ChangeAnimation(eAnimAttack01, false);
-	if (m_img.GetIndex() == 3) {
+	//?番目のアニメーションの時発動
+	/*if (m_img.GetIndex() == ? ) {
 		if (m_flip) {
-			//Base::Add(new Slash(m_pos + CVector2D(-64, -64), m_flip, eType_Enemmy_Attack, m_attack_no));
+			Base::Add(new Slash(m_pos + CVector2D(-64, -64), m_flip, eType_Enemmy_Attack, m_attack_no));
 		}
 		else {
-			//Base::Add(new Slash(m_pos + CVector2D(64, -64), m_flip, eType_Enemmy_Attack, m_attack_no));
+			Base::Add(new Slash(m_pos + CVector2D(64, -64), m_flip, eType_Enemmy_Attack, m_attack_no));
 		}
-	}
+	}*/
 	//アニメーションが終了したら
 	if (m_img.CheckAnimationEnd()) {
 		//通常状態へ移行
@@ -147,9 +148,9 @@ Enemy2::Enemy2(const CVector2D& pos, bool flip)
 	//画像表示サイズ 
 	m_img.SetSize(500, 500);
 	//中心位置
-	m_img.SetCenter(500 / 2, 500 / 2);
+	m_img.SetCenter(500 / 2, 225);
 	//矩形
-	m_rect = CRect(-25, -100, 25, 0);
+	m_rect = CRect(-38, 100, 45, 0);
 	//hp
 	m_hp = 10;
 	//反転フラグ
@@ -164,16 +165,34 @@ Enemy2::Enemy2(const CVector2D& pos, bool flip)
 
 void Enemy2::Update()
 {
-	//待機
-	m_img.ChangeAnimation(0);//(3)
-	//更新
-	m_img.UpdateAnimation();
+	m_pos_old = m_pos;
+	switch (m_state) {
+		//通常
+	case eState_Idle:
+		StateIdle();
+		break;
+		//攻撃
+	//case eState_Attack:
+		//StateAttack();
+		break;
+		//ダメージ
+	case eState_Damage:
+		StateDamage();
+		break;
+		//ダウン
+	case eState_Down:
+		StateDown();
+		break;
+	}
 	//落ちていたら落下状態へ
 	if (m_is_ground && m_vec.y > GRAVITY * 4)
 		m_is_ground = false;
 	//重力落下
 	m_vec.y += GRAVITY;
 	m_pos += m_vec;
+
+	//アニメーション更新
+	m_img.UpdateAnimation();
 }
 
 void Enemy2::Draw()
@@ -185,13 +204,34 @@ void Enemy2::Draw()
 	//描画
 	m_img.Draw();
 	//当たり判定矩形表示
-	//DrawRect();
+	DrawRect();
 
 }
 
 void Enemy2::Collision(Base* b)
 {
 	switch (b->m_type) {
+	case eType_Map:
+		/*if (Map* m = dynamic_cast<Map*> (b)) {
+			int t;
+			t = m->CollisionRect(CVector2D(m_pos.x, m_pos_old.y), m_rect);
+			if (t != 0) {
+				m_pos.x = m_pos_old.x;
+			}
+			t = m->CollisionRect(CVector2D(m_pos_old.x, m_pos.y), m_rect);
+			if (t != 0) {
+				m_pos.y = m_pos_old.y;
+				//落下リセット
+				m_vec.y = 0;
+				//着地フラグON
+				m_is_ground = true;
+			}
+		}
+		break;*/
+
+	case eType_Player_Attack:
+		
+		
 	case eType_Field:
 		//Field型へキャスト、型変換できたら
 		if (Field* f = dynamic_cast<Field*>(b)) {
