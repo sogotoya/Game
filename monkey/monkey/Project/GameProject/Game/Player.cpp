@@ -115,8 +115,8 @@ void Player::StateDown()
 
 
 void Player::Update() {
-	m_img.ChangeAnimation(5);
-	m_img.UpdateAnimation();
+	//m_img.ChangeAnimation(2);
+	//m_img.UpdateAnimation();
 	
 	m_pos_old = m_pos;
 	switch (m_state) {
@@ -229,7 +229,7 @@ TexAnimData player_anim_data[] = {
 	ANIMDATA(playerIdle),
 	ANIMDATA(playerBattou),
 	ANIMDATA(playerStep),
-	ANIMDATA(playerAttack01),
 	ANIMDATA(playerCrouchi),
 	ANIMDATA(playerDown),
+	ANIMDATA(playerAttack01),
 };
