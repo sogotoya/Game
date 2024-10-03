@@ -1,7 +1,7 @@
 #include "Enemy3.h"
 #include"AnimData.h"
 #include "../Base/Base.h"
-#include"Field.h"
+#include"Map.h"
 
 
 Enemy3::Enemy3(const CVector2D& pos, bool flip) :Base(eType_Enemy3)
@@ -201,7 +201,7 @@ void Enemy3::Collision(Base* b)
     switch (b->m_type) {
     case eType_Field:
         //Field型へキャスト、型変換できたら
-        if (Field* f = dynamic_cast<Field*>(b)) {
+        if (Map* f = dynamic_cast<Map*>(b)) {
             //地面より下にいったら
             if (m_pos.y > f->GetGroundY()) {
                 //地面の高さに戻す
