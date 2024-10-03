@@ -145,11 +145,11 @@ Enemy2::Enemy2(const CVector2D& pos, bool flip)
 	//座標
 	m_pos_old = m_pos = pos;
 	//画像表示サイズ 
-	m_img.SetSize(500, 500);
+	m_img.SetSize(300, 300);
 	//中心位置
-	m_img.SetCenter(500 / 2, 225);
+	m_img.SetCenter(150 ,300);
 	//矩形
-	m_rect = CRect(-38, 100, 45, 0);
+	m_rect = CRect(-30, -150, 30, 0);
 	//hp
 	m_hp = 10;
 	//反転フラグ
