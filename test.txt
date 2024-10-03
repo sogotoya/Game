@@ -11,5 +11,5 @@
 はま寿司です。
 pureiya- HP:100 Attack:5
 komori   HP:5   Attack:10
-gobuta   HP:10  Attack:5
+gobuta   HP:10  Attack:5				ジャンプなし足が遅い
 sova     HO:35  Attack:でゅくし3、弓10(仮)、ult25

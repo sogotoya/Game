@@ -47,7 +47,7 @@ void Player::StateIdle()
 	//攻撃
 	if (PUSH(CInput::eButton1)) {
 		//攻撃状態へ移行
-		m_state = eState_Attack;
+		m_state = eState_Attack01;
 
 		//Base::Add(new Slash(m_pos + CVector2D(64, -64), m_flip, eType_Player_Attack, 0));
 	}
@@ -86,22 +86,50 @@ void Player::StateIdle()
 
 }
 
-void Player::StateAttack()
+void Player::StateAttack01()
 {
 	float move_speed = 6;
 
 	//攻撃アニメーションへ変更
 	m_img.ChangeAnimation(eAnimAttack01, false);
-	//if(m_img.GetIndex()>=2 && m_img.GetIndex()<=4)
+	//アニメーションが終了したら
+	if (m_img.CheckAnimationEnd()) {
+		//通常状態へ移行
+		m_state = eState_Idle;
+	}
+	if (PUSH(CInput::eButton1)) {
+		//攻撃状態へ移行
+		m_state = eState_Attack02;
+
 	if (m_is_ground == false) {
 		if (m_flip == false)
 			m_pos.x += move_speed;
 		if (m_flip == true)
 		    m_pos.x -= move_speed;
-
+		
+		}
 	}
 
 	
+	
+
+}
+void Player::StateAttack02()
+{
+	float move_speed = 6;
+
+	//攻撃アニメーションへ変更
+	m_img.ChangeAnimation(eAnimAttack02, false);
+	//ジャンプをして左の方向に攻撃をする
+	if (m_is_ground == false) {
+		if (m_flip == false)
+			m_pos.x += move_speed;
+		if (m_flip == true)
+			m_pos.x -= move_speed;
+
+	}
+
+
 	//アニメーションが終了したら
 	if (m_img.CheckAnimationEnd()) {
 		//通常状態へ移行
@@ -136,8 +164,11 @@ void Player::Update() {
 		StateIdle();
 		break;
 		//攻撃状態
-	case eState_Attack:
-		StateAttack();
+	case eState_Attack01:
+		StateAttack01();
+		break;
+	case eState_Attack02:
+		StateAttack02();
 		break;
 		//ダメージ状態
 	case eState_Damage:
@@ -205,12 +236,12 @@ static TexAnim playerBattou[] = {
 
 };
 static TexAnim playerStep[] = {
-	{ 8,10 },
-	{ 9,10 },
-	{ 10,10 },
-	{ 11,10 },
-	{ 12,10 },
-	{ 13,10 },
+	{ 8,7 },
+	{ 9,7 },
+	{ 10,7 },
+	{ 11,7 },
+	{ 12,7 },
+	{ 13,7 },
 	
 };
 static TexAnim playerAttack01[] = {
@@ -223,13 +254,11 @@ static TexAnim playerAttack01[] = {
 	{ 49,2 },
 };
 static TexAnim playerAttack02[] = {
-	{ 43,0 },
-	{ 44,0 },
-	{ 45,0 },
-	{ 46,0 },
-	{ 47,0 },
-	{ 48,0 },
-	{ 49,0 },
+	{ 50,5 },
+	{ 51,5 },
+	{ 52,5 },
+	
+	
 };
 static TexAnim playerCrouchi[] = {
 	{ 4,10 },
@@ -246,13 +275,29 @@ static TexAnim playerDown[] = {
 	{ 68,18 },
 	{ 69,18 },
 };
+static TexAnim playerJumpup[] = {
+	{ 15,3 },
+	{ 16,3 },
+	{ 17,3 },
+	{ 18,3 },
+};
+static TexAnim playerJumpDown[] = {
+	{19, 3 },
+    { 20,3 },
+    { 21,3 },
+    { 22,3 },
+    { 23,3 },
+};
+
 TexAnimData player_anim_data[] = {
 	ANIMDATA(playerIdle),
 	ANIMDATA(playerStep),
-	ANIMDATA(playerBattou),
-	ANIMDATA(playerCrouchi),
+	ANIMDATA(playerJumpup),
+	ANIMDATA(playerJumpDown),
 	ANIMDATA(playerAttack01),
 	ANIMDATA(playerDown),
-	
+	ANIMDATA(playerAttack02),
+	ANIMDATA(playerBattou),
+	ANIMDATA(playerCrouchi),
 };
 
