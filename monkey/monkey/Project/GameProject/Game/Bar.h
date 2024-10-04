@@ -11,3 +11,4 @@ public:
 	//“–‚½‚è”»’èŒŸØ
 	void Collision(Base* b);
 };
+extern TexAnimData bar_anim_data[];

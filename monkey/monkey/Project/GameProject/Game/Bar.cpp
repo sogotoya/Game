@@ -9,32 +9,34 @@ bar::bar(const CVector2D& p, bool flip):Base(eType_bar)
 	//座標設定
 	m_pos = p;
 	//画像サイズ設定
-	m_img.SetSize(300, 10);
+	m_img.SetSize(150, 50);
 	//中心位置設定
-	m_img.SetCenter(150, 5);
-	m_rect = CRect(-150, -5, 150, 5);
+	m_img.SetCenter(75, 25);
+	m_rect = CRect(-75, -25, 75,25 );
 	turn = 0;
-	m_vec = CVector2D(10, -10);
+	m_img.ChangeAnimation(0);
+	
 }
 
 void bar::Update()
 {
 	
-
+	m_img.ChangeAnimation(0);
+	m_img.UpdateAnimation();
 	
-	if (m_pos.y < 160 * MAP_TIP_SIZE && turn == 0)
+	if (turn == 0)
 	{
 		m_pos.y += 4;
 	}
-	if (m_pos.y > 60 * MAP_TIP_SIZE)
+	if (m_pos.y > 4 * MAP_TIP_SIZE)
 	{
 		turn = 1;
 	}
-	if (m_pos.y >= -160 * MAP_TIP_SIZE && turn == 1)
+	if ( turn == 1)
 	{
 		m_pos.y -= 4;
 	}
-	if (m_pos.y < -60 * MAP_TIP_SIZE)
+	if (m_pos.y < 1 * MAP_TIP_SIZE)
 	{
 		turn = 0;
 	}
@@ -43,7 +45,7 @@ void bar::Update()
 
 void bar::Draw()
 {
-	m_img.SetPos(m_pos);
+	m_img.SetPos(GetScreenPos(m_pos));
 	m_img.Draw();
 	DrawRect();
 	
@@ -54,3 +56,13 @@ void bar::Collision(Base* b)
 {
 
 }
+static TexAnim barfuuu[] = {
+	{0,5},
+	{1,5},
+	{2,5},
+	{3,5},
+	
+};
+TexAnimData bar_anim_data[] = {
+	ANIMDATA(barfuuu),
+};

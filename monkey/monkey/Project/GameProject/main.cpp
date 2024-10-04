@@ -113,8 +113,8 @@ void Init(void)
 	//ADD_RESOURCE("sky", CImage::CreateImage("Image/haikei.png"));
 	//Base::Add(new Field(CVector2D(960, 540)));
 	ADD_RESOURCE("BackGround", CImage::CreateImage("Image/haikei.png"));
-	ADD_RESOURCE("bar", CImage::CreateImage("Image/bar.png"));
-	Base::Add(new bar(CVector2D(200, 200), true));
+	ADD_RESOURCE("bar", CImage::CreateImage("Image/bar.png",bar_anim_data, 32, 9));
+	Base::Add(new bar(CVector2D(3200, 200), true));
 	
 	//è\âÕ
 	ADD_RESOURCE("Enemy2", CImage::CreateImage("Image/gobuta.png", enemy2_anim_data, 150, 150));
