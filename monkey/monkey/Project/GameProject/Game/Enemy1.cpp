@@ -72,9 +72,9 @@ Enemy1::Enemy1(const CVector2D& p, bool flip) :Base(eType_Enemy) {
 	//座標設定
 	m_pos = p;
 	//中心位置設定
-	m_img.SetCenter(128, 224);
+	m_img.SetCenter(100,100);
 	//当たり判定用矩形設定
-	m_rect = CRect(-32, -128, 32, 0);
+	m_rect = CRect(-100, -100, 100, 100);
 	m_img.SetSize(200, 200);
 	//ヒットポイント
 	m_hp = 5;
@@ -91,16 +91,22 @@ Enemy1::Enemy1(const CVector2D& p, bool flip) :Base(eType_Enemy) {
 
 void Enemy1::Update()
 {
-	m_img.ChangeAnimation(5);
-	m_img.UpdateAnimation();
+	//m_img.ChangeAnimation(5);
+	//m_img.UpdateAnimation();
+	m_pos_old = m_pos;
 	switch (m_state) {
 		//通常状態
 	case eState_Idle:
-			break;
+		break;
 		//攻撃状態
 	case eState_Attack:
 		StateAttack();
 		break;
+		//ダメージ状態
+	case eState_Damage:
+		StateDamage();
+		break;
+	
 		//ダウン状態
 	case eState_Down:
 		StateDown();
@@ -133,6 +139,23 @@ void Enemy1::Collision(Base* b)
 {
 	switch (b->m_type) {
 	case eType_Map:
+		if (Map* m = dynamic_cast<Map*>(b)) {
+			int t;
+			t = m->CollisionRect(CVector2D(m_pos.x, m_pos_old.y), m_rect);
+			if (t != 0) {
+				m_pos.x = m_pos_old.x;
+			}
+			t = m->CollisionRect(CVector2D(m_pos_old.x, m_pos.y), m_rect);
+			if (t != 0) {
+				m_pos.y = m_pos_old.y;
+				//落下速度リセット
+				m_vec.y = 0;
+				//接地フラグON
+				m_is_ground = true;
+			}
+		}
+	}
+	/*case eType_Map:
 		//Field型へキャスト、型変換できたら
 		if (Map* f = dynamic_cast<Map*>(b)) {
 			//地面より下にいったら
@@ -146,7 +169,7 @@ void Enemy1::Collision(Base* b)
 			}
 		}
 		break;
-	}
+	}*/
 
 }
 static TexAnim enemy1Idle[] = {
