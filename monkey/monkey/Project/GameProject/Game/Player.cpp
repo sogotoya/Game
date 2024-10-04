@@ -261,8 +261,8 @@ void Player::Collision(Base* b)
 		break;*/
 	case eType_bar:
 		if (Base::CollisionRect(this, b)) {
-			//m_pos.y = b->m_pos.y+b->m_rect.m_top;
-			m_pos_old.y = b->m_pos_old.y+m_rect + b->m_rect.m_top;
+			m_pos.y = b->m_pos.y+b->m_rect.m_top;
+			//m_pos_old.y = b->m_pos_old.y+m_rect + b->m_rect.m_top;
 			m_is_ground = true;//’…’n
 		}   
 	}
