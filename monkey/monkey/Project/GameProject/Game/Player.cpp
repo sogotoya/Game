@@ -1,6 +1,7 @@
 #include "Player.h"
 #include "Bullet.h"
 #include "Map.h"
+#include"Bar.h"
 Player::Player(const CVector2D& p, bool flip) :
 	Base(eType_Player) {
 	//‰æ‘œ•¡»
@@ -228,7 +229,7 @@ void Player::Collision(Base* b)
 
 	switch (b->m_type) {
 	case eType_Map:
-		if (Map* m = dynamic_cast<Map*>(b)) {
+		if (Map* m = dynamic_cast<Map*>(b)) {//
 			int t;
 			t = m->CollisionRect(CVector2D(m_pos.x, m_pos_old.y), m_rect);
 			if (t != 0) {
@@ -258,7 +259,14 @@ void Player::Collision(Base* b)
 			}
 		}
 		break;*/
+	case eType_bar:
+		if (Base::CollisionRect(this, b)) {
+			//m_pos.y = b->m_pos.y+b->m_rect.m_top;
+			m_pos_old.y = b->m_pos_old.y+m_rect + b->m_rect.m_top;
+			m_is_ground = true;//’…’n
+		}   
 	}
+	
 }
 
 static TexAnim playerIdle[] = {

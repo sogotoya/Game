@@ -150,7 +150,8 @@ void Enemy3::Update()
 {
     //m_img.ChangeAnimation(5);
     //m_img.UpdateAnimation();
-    //return;
+    return;
+    m_pos_old = m_pos;
     switch (m_state) {
         //í èÌèÛë‘
     case eState_Idle:
@@ -321,12 +322,12 @@ static TexAnim Enemy3Step[] = {
     { 11,6},
 };
 static TexAnim Enemy3Dmg[] = {
-    {133,9},
-    {134,9},
-    {135,9},
-    {136,9},
-    {137,9},
-    {138,9},
+    {335,9},
+    {336,9},
+    {337,9},
+    {338,9},
+    {339,9},
+    {340,9},
 };
 static TexAnim Enemy3Down[] = {
     {155,9},
