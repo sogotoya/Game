@@ -147,9 +147,9 @@ Enemy2::Enemy2(const CVector2D& pos, bool flip)
 	//画像表示サイズ 
 	m_img.SetSize(300, 300);
 	//中心位置
-	m_img.SetCenter(150 ,300);
+	m_img.SetCenter(150 ,200);
 	//矩形
-	m_rect = CRect(-30, -150, 30, 0);
+	m_rect = CRect(-30, -98, 30, 0);
 	//hp
 	m_hp = 10;
 	//反転フラグ
@@ -211,7 +211,7 @@ void Enemy2::Collision(Base* b)
 {
 	switch (b->m_type) {
 	case eType_Map:
-		/*if (Map* m = dynamic_cast<Map*> (b)) {
+		if (Map* m = dynamic_cast<Map*> (b)) {
 			int t;
 			t = m->CollisionRect(CVector2D(m_pos.x, m_pos_old.y), m_rect);
 			if (t != 0) {
@@ -226,7 +226,7 @@ void Enemy2::Collision(Base* b)
 				m_is_ground = true;
 			}
 		}
-		break;*/
+		break;
 
 	case eType_Player_Attack:
 		//Slash型へキャスト、型変換できたら

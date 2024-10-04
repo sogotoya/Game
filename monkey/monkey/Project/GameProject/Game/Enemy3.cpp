@@ -200,7 +200,25 @@ void Enemy3::Draw()
 void Enemy3::Collision(Base* b)
 {
     switch (b->m_type) {
-    case eType_Field:
+    case eType_Map:
+        if (Map* m = dynamic_cast<Map*> (b)) {
+            int t;
+            t = m->CollisionRect(CVector2D(m_pos.x, m_pos_old.y), m_rect);
+            if (t != 0) {
+                m_pos.x = m_pos_old.x;
+            }
+            t = m->CollisionRect(CVector2D(m_pos_old.x, m_pos.y), m_rect);
+            if (t != 0) {
+                m_pos.y = m_pos_old.y;
+                //落下リセット
+                m_vec.y = 0;
+                //着地フラグON
+                m_is_ground = true;
+            }
+        }
+        break;
+
+    /*case eType_Field:
         //Field型へキャスト、型変換できたら
         if (Map* f = dynamic_cast<Map*>(b)) {
             //地面より下にいったら
@@ -213,8 +231,9 @@ void Enemy3::Collision(Base* b)
                 m_is_ground = true;
             }
         }
-        break;
+        break;*/
     }
+
 }
 static TexAnim Enemy3Ran[] = {
     { 23,5 },
