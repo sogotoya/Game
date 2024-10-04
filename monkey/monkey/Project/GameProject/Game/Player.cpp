@@ -1,5 +1,4 @@
 #include "Player.h"
-#include "AnimData.h"
 #include "Bullet.h"
 #include "Map.h"
 Player::Player(const CVector2D& p, bool flip) :
@@ -53,6 +52,14 @@ void Player::StateIdle()
 
 		//Base::Add(new Slash(m_pos + CVector2D(64, -64), m_flip, eType_Player_Attack, 0));
 	}
+	//しゃがみ
+	if (HOLD(CInput::eDown)) {
+		//しゃがみ状態へ移行
+		m_state = eState_Crouchi;
+		//反転フラグ
+		m_flip = true;
+		move_flag = true;
+	}
 	//ジャンプ力
 	const float jump_pow = 15;
 
@@ -84,7 +91,7 @@ void Player::StateIdle()
 			m_img.ChangeAnimation(eAnimIdle);
 		}
 	}
-
+	
 
 }
 
@@ -154,6 +161,15 @@ void Player::StateDown()
 	}
 }
 
+void Player::StateCrouchi()
+{
+	m_img.ChangeAnimation(eAnimCrouchi, false);
+	if (m_img.CheckAnimationEnd()) {
+		m_state = eState_Idle;
+
+	}
+}
+
 
 void Player::Update() {
 	//m_img.ChangeAnimation(2);
@@ -179,6 +195,10 @@ void Player::Update() {
 		//ダウン状態
 	case eState_Down:
 		StateDown();
+		break;
+		//しゃがみ状態
+	case eState_Crouchi:
+		StateCrouchi();
 		break;
 	}
 	//落ちていたら落下中状態へ移行
@@ -282,10 +302,10 @@ static TexAnim playerAttack02[] = {
 	
 };
 static TexAnim playerCrouchi[] = {
-	{ 4,10 },
-	{ 5,10 },
-	{ 6,10 },
-	{ 7,10 },
+	{ 4,2 },
+	{ 5,2 },
+	{ 6,2 },
+	{ 7,2 },
 	
 };
 static TexAnim playerDown[] = {
@@ -316,9 +336,9 @@ TexAnimData player_anim_data[] = {
 	ANIMDATA(playerJumpup),
 	ANIMDATA(playerJumpDown),
 	ANIMDATA(playerAttack01),
-	ANIMDATA(playerDown),
+	ANIMDATA(playerCrouchi),
 	ANIMDATA(playerAttack02),
 	ANIMDATA(playerBattou),
-	ANIMDATA(playerCrouchi),
+	ANIMDATA(playerDown),
 };
 

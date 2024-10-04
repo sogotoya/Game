@@ -10,6 +10,37 @@ private:
 		eState_Attack02,
 		eState_Damage,
 		eState_Down,
+		eState_Crouchi,
+
+	};
+	enum {
+		eAnimIdle = 0,
+		eAnimRun,
+		eAnimJumpUp,
+		eAnimJumpDown,
+		eAnimAttack01,
+		eAnimCrouchi,
+		eAnimAttack01End,
+		eAnimAttack02,
+		eAnimAttack02End,
+		eAnimAttack03,
+		eAnimAttack03End,
+		eAnimDamage,
+		eAnimDamageEnd,
+		eAnimDeath,
+		eAnimDown,
+		eAnimDownGround,
+		eAnimWakeUp,
+		eAnimGuard,
+		eAnimGuardEnd,
+		eAnimCrash,
+		eAnimCrashEnd,
+		eAnimExtAttack01,
+		eAnimExtAttack01End,
+		eAnimExtAttack02,
+		eAnimExtAttack02End,
+		eAnimStep,
+		
 	};
 	//èÛë‘ïœêî
 	int m_state;
@@ -29,6 +60,7 @@ private:
 	void StateAttack02();
 	void StateDamage();
 	void StateDown();
+	void StateCrouchi();
 public:
 	Player(const CVector2D& p, bool flip);
 	void Update();
