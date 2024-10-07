@@ -8,12 +8,14 @@ private:
 		eState_Attack,
 		eState_Damage,
 		eState_Down,
+		eState_Hit,
 	};
 	enum {
 		e2step,
 		e2Anim_Attack,
 		e2Animdie,
 		e2AnimRun,
+		e2AnimHit,
 	};
 	//ó‘Ô•Ï”
 	int m_state;

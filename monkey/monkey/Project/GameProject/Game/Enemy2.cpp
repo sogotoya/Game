@@ -39,12 +39,20 @@ static TexAnim Enemy2ran[] = {//3
 	{ 30,4 },
 	{ 31,4 },
 
+
+};
+static TexAnim Enemy2Hit[] = {//4
+	{ 32,5 },
+	{33,5 },
+	{ 34,5 },
+	{ 35,5 },
 };
 TexAnimData enemy2_anim_data[] = {
 	ANIMDATA(Enemy2Step),//0
 	ANIMDATA(Enemy2Attack),//1
 	ANIMDATA(Enemy2die),//2
 	ANIMDATA(Enemy2ran),//3
+	ANIMDATA(Enemy2Hit),//4
 };
 
 void Enemy2::StateIdle()//ÉWÉÉÉìÉvÇ»Çµ
@@ -164,6 +172,9 @@ Enemy2::Enemy2(const CVector2D& pos, bool flip)
 
 void Enemy2::Update()
 {
+	//m_img.ChangeAnimation(4);
+	//m_img.UpdateAnimation();
+	//return;
 	m_pos_old = m_pos;
 	switch (m_state) {
 		//í èÌ

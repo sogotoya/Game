@@ -7,18 +7,30 @@ Enemy3::Enemy3(const CVector2D& pos, bool flip) :Base(eType_Enemy3)
 {
 	//画像複製
 	m_img = COPY_RESOURCE("Enemy3", CImage);
-    m_pos = pos;
-	//体力
-	m_hp = 35;
-    //通常状態
-    m_state = eState_Idle;
-    //着地フラグ
-    m_is_ground = true;
     //再生アニメーション設定
     m_img.ChangeAnimation(0);
-    //中心位置設定
-    m_img.SetCenter(128, 224);
+    //座標
+    m_pos_old = m_pos = pos;
+    //画像サイズ
     m_img.SetSize(300, 300);
+    //中心位置設定
+    m_img.SetCenter(150, 300);
+    //矩形
+    m_rect = CRect(-30, -110, 30, 0);
+    //体力
+	m_hp = 35;
+    //反転フラグ
+    m_flip = flip;
+    //着地フラグ
+    m_is_ground = true;
+    //攻撃番号
+    m_attack_no = rand();
+    //ダメージ番号
+    //m_damage_no = -1;
+    //通常状態
+   // m_state = eState_Idle;
+    
+   
     
 }
 void Enemy3::StateIdle() {
@@ -29,7 +41,7 @@ void Enemy3::StateIdle() {
     Base* player = Base::FindObject(eType_Player);
     if (player) {
         //左移動
-        if (player->m_pos.x < m_pos.x - 64) {
+        if (player->m_pos.x < m_pos.x - 32) {
             //移動量を設定
             m_pos.x += -move_speed;
             //反転フラグ
@@ -37,7 +49,7 @@ void Enemy3::StateIdle() {
             move_flag = true;
         }
         //右移動
-        if (player->m_pos.x > m_pos.x + 64) {
+        if (player->m_pos.x > m_pos.x + 32) {
             //移動量を設定
             m_pos.x += move_speed;
             //反転フラグ
@@ -148,8 +160,8 @@ void Enemy3::StateDown()
 
 void Enemy3::Update()
 {
-    //m_img.ChangeAnimation(5);
-    //m_img.UpdateAnimation();
+    m_img.ChangeAnimation(6);
+    m_img.UpdateAnimation();
     return;
     m_pos_old = m_pos;
     switch (m_state) {
@@ -190,12 +202,12 @@ void Enemy3::Update()
 
 void Enemy3::Draw()
 {
-    m_img.SetPos(m_pos);
+    m_img.SetPos(GetScreenPos(m_pos));
     m_img.SetFlipH(m_flip);
     //描画
     m_img.Draw();
     //当たり判定矩形の表示
-    //DrawRect();
+    DrawRect();
 }
 
 void Enemy3::Collision(Base* b)
@@ -322,33 +334,33 @@ static TexAnim Enemy3Step[] = {
     { 11,6},
 };
 static TexAnim Enemy3Dmg[] = {
+    {330,9},
+    {331,9},
+    {332,9},
+    {333,9},
+    {334,9},
     {335,9},
-    {336,9},
-    {337,9},
-    {338,9},
-    {339,9},
-    {340,9},
 };
 static TexAnim Enemy3Down[] = {
-    {155,9},
-    {156,9},
-    {157,9},
-    {158,9},
-    {159,9},
-    {160,9},
-    {161,9},
-    {162,9},
-    {163,9},
-    {164,9},
-    {165,9},
-    {166,9},
-    {167,9},
-    {168,9},
-    {169,9},
-    {170,9},
-    {171,9},
-    {172,9},
-    {173,9},
+    {352,9},
+    {353,9},
+    {354,9},
+    {355,9},
+    {356,9},
+    {357,9},
+    {358,9},
+    {359,9},
+    {360,9},
+    {361,9},
+    {362,9},
+    {363,9},
+    {364,9},
+    {365,9},
+    {366,9},
+    {367,9},
+    {368,9},
+    {369,9},
+    {370,9},
 };
 TexAnimData enemy3_anim_data[] = {
     ANIMDATA(Enemy3Ran),
