@@ -263,7 +263,10 @@ void Player::Collision(Base* b)
 				m_pos.y = b->m_pos.y + b->m_rect.m_top;
 				m_is_ground = true;//’…’n
 				m_vec.y = 0;
+				
 			}
+
+
 		}
 	
 			
