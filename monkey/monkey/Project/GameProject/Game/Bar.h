@@ -4,6 +4,7 @@ private:
 	//ŠÔ
 	int turn;
 	CImage m_img;
+	CImage m_bar2;
 public:
 	bar(const CVector2D& p, bool flip);
 	void Update();
