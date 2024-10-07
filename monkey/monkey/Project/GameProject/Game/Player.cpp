@@ -57,9 +57,7 @@ void Player::StateIdle()
 	if (HOLD(CInput::eDown)) {
 		//しゃがみ状態へ移行
 		m_state = eState_Crouchi;
-		//反転フラグ
-		m_flip = true;
-		move_flag = true;
+
 	}
 	//ジャンプ力
 	const float jump_pow = 15;
@@ -261,10 +259,16 @@ void Player::Collision(Base* b)
 		break;*/
 	case eType_bar:
 		if (Base::CollisionRect(this, b)) {
-			m_pos.y = b->m_pos.y+b->m_rect.m_top;
-			//m_pos_old.y = b->m_pos_old.y+m_rect + b->m_rect.m_top;
-			m_is_ground = true;//着地
-		}   
+			if (m_pos_old.y + m_rect.m_bottom <= b->m_pos_old.y + b->m_rect.m_top) {
+				m_pos.y = b->m_pos.y + b->m_rect.m_top;
+				m_is_ground = true;//着地
+				m_vec.y = 0;
+			}
+		}
+	
+			
+			
+		break;
 	}
 	
 }
@@ -345,8 +349,8 @@ TexAnimData player_anim_data[] = {
 	ANIMDATA(playerJumpDown),
 	ANIMDATA(playerAttack01),
 	ANIMDATA(playerCrouchi),
-	ANIMDATA(playerAttack02),
 	ANIMDATA(playerBattou),
+	ANIMDATA(playerAttack02),
 	ANIMDATA(playerDown),
 };
 
