@@ -12,7 +12,7 @@ bar::bar(const CVector2D& p, bool flip):Base(eType_bar)
 	m_img.SetSize(150, 50);
 	//中心位置設定
 	m_img.SetCenter(75, 25);
-	m_rect = CRect(-75, -25, 75,25 );//左，うえ、右、したた
+	m_rect = CRect(-65, -25, 65,0 );//左，うえ、右、したた
 	turn = 0;
 	m_img.ChangeAnimation(0);
 	
@@ -23,6 +23,7 @@ void bar::Update()
 	
 	m_img.ChangeAnimation(0);
 	m_img.UpdateAnimation();
+	m_pos_old = m_pos;
 	
 	if (turn == 0)
 	{
