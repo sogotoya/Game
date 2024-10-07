@@ -160,9 +160,9 @@ void Enemy3::StateDown()
 
 void Enemy3::Update()
 {
-    m_img.ChangeAnimation(6);
-    m_img.UpdateAnimation();
-    return;
+    //m_img.ChangeAnimation(6);
+    //m_img.UpdateAnimation();
+    //return;
     m_pos_old = m_pos;
     switch (m_state) {
         //’Êíó‘Ô
