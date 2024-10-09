@@ -13,7 +13,7 @@ void Enemy1::StateIdle()
 	Base* player = Base::FindObject(eType_Player);
 	if (player) {
 		//¶ˆÚ“®
-		if (player->m_pos.x < m_pos.x - 64) {//64ƒhƒbƒg—£‚ê‚Ä‚¢‚é‚ÆˆÚ“®‚µ‚Ü‚·
+		if (player->m_pos.x < m_pos.x - 32) {//64ƒhƒbƒg—£‚ê‚Ä‚¢‚é‚ÆˆÚ“®‚µ‚Ü‚·
 			//ˆÚ“®—Ê‚ðÝ’è
 			m_pos.x += -move_speed;
 			//”½“]ƒtƒ‰ƒO
@@ -21,7 +21,7 @@ void Enemy1::StateIdle()
 			move_flag = true;
 		}
 		//‰EˆÚ“®
-		if (player->m_pos.x > m_pos.x + 64) {
+		if (player->m_pos.x > m_pos.x + 32) {
 			//ˆÚ“®—Í‚ðÝ’è
 			m_pos.x += move_speed;
 			//”½“]ƒtƒ‰ƒO
@@ -30,14 +30,14 @@ void Enemy1::StateIdle()
 		}
 
 		//¶UŒ‚
-		if (player->m_pos.x < m_pos.x && player->m_pos.x > m_pos.x - 64) {
+		if (player->m_pos.x < m_pos.x && player->m_pos.x > m_pos.x - 32) {
 			//UŒ‚ó‘Ô‚ÖˆÚs
 			m_state = eState_Attack;
 			m_attack_no++;
 			m_flip = true;
 		}
 		//‰EUŒ‚
-		if (player->m_pos.x > m_pos.x && player->m_pos.x < m_pos.x + 64) {
+		if (player->m_pos.x > m_pos.x && player->m_pos.x < m_pos.x + 32) {
 			//UŒ‚ó‘Ô‚Ö
 			m_state = eState_Attack;
 			m_attack_no++;
