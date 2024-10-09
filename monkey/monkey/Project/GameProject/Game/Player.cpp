@@ -28,7 +28,7 @@ Player::Player(const CVector2D& p, bool flip) :
 void Player::StateIdle()
 {
 	//移動量
-	const float move_speed = 100;//8
+	const float move_speed = 8;//8
 	//移動フラグ
 	bool move_flag = false;
 	//左移動
@@ -61,7 +61,7 @@ void Player::StateIdle()
 
 	}
 	//ジャンプ力
-	const float jump_pow = 50;
+	const float jump_pow = 15;
 
 	//ジャンプ
 	if (m_is_ground && PUSH(CInput::eButton2)) {
