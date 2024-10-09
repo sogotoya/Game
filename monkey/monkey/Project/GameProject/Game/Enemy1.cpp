@@ -32,19 +32,35 @@ void Enemy1::StateIdle()
 				m_flip = false;
 				move_flag = true;
 			}
-			//左移動
+			//下移動
 			if (player->m_pos.y < m_pos.y - 32) {//64ドット離れていると移動します
 				//移動量を設定
 				m_pos.y += -move_speed;
 				move_flag = true;
 			}
-			//右移動
+			//上移動
 			if (player->m_pos.y > m_pos.y + 32) {
 				//移動力を設定
 				m_pos.y += move_speed;
 				move_flag = true;
 			}
 		}
+		//左攻撃
+		if (player->m_pos.x < m_pos.x && player->m_pos.x > m_pos.x - 64) {
+			//攻撃状態へ移行
+			m_state = eState_Attack;
+			m_attack_no++;  //多段ヒット対策
+			m_flip = true;  //反転フラグ
+
+		}
+		//右攻撃
+		if (player->m_pos.x > m_pos.x && player->m_pos.x < m_pos.x + 64) { //player->m_pos.x（プレイヤー） > m_pos.x(敵）
+			//攻撃状態へ移行
+			m_state = eState_Attack;
+			m_attack_no++;
+			m_flip = false;
+		}
+		m_img.ChangeAnimation(eState_Idle, false);
 	}
 }
 void Enemy1::StateAttack()
@@ -194,48 +210,41 @@ void Enemy1::Collision(Base* b)
 }
 static TexAnim enemy1Idle[] = {
 
-	{ 1,18 },
-	{ 2,18 },
-	{ 3,18 },
+	{ 1,6 },
+	{ 2,6 },
+	{ 3,6 },
+	{ 4,6 },
+	{ 5,6 },
+	{ 6,6 },
+	{ 7,6 },
+	{ 8,6 },
+	{ 9,6 },
 };
 
-static TexAnim enemy1Step[] = {
-	{ 8,10 },
-	{ 9,10 },
-	{ 10,10 },
-	{ 11,10 },
-	{ 12,10 },
-	{ 13,10 },
-
-};
 static TexAnim enemy1Attack01[] = {
-	{ 43,7 },
-	{ 44,7 },
-	{ 45,7 },
-	{ 46,7 },
-	{ 47,7 },
-	{ 48,7 },
-	{ 49,7 },
+	{ 10,7 },
+	{ 11,7 },
+	{ 12,7 },
+	{ 13,7 },
+	{ 14,7 },
+	{ 15,7 },
+	{ 16,7 },
 };
-static TexAnim enemy1Crouchi[] = {
-	{ 4,10 },
-	{ 5,10 },
-	{ 6,10 },
-	{ 7,10 },
-
+static TexAnim enemy1Damage[] = {
+	{ 16,10 },
+	{ 17,10 },
 };
 static TexAnim enemy1Down[] = {
-	{ 64,18 },
-	{ 65,18 },
-	{ 66,18 },
-	{ 67,18 },
-	{ 68,18 },
-	{ 69,18 },
+	{ 18,18 },
+	{ 19,18 },
+	{ 20,18 },
+	{ 21,18 },
+	{ 22,18 },
+	{ 23,18 },
 };
 TexAnimData Enemy1_anim_data[] = {
 	ANIMDATA(enemy1Idle),
-	ANIMDATA(enemy1Step),
 	ANIMDATA(enemy1Attack01),
-	ANIMDATA(enemy1Crouchi),
+	ANIMDATA(enemy1Damage),
 	ANIMDATA(enemy1Down),
 };
