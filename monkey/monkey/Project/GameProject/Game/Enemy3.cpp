@@ -41,7 +41,7 @@ void Enemy3::StateIdle() {
     Base* player = Base::FindObject(eType_Player);
     if (player) {
         //左移動
-        if (player->m_pos.x < m_pos.x - 32) {
+        /*if (player->m_pos.x < m_pos.x - 32) {
             //移動量を設定
             m_pos.x += -move_speed;
             //反転フラグ
@@ -55,7 +55,7 @@ void Enemy3::StateIdle() {
             //反転フラグ
             m_flip = false;
             move_flag = true;
-        }
+        }*/
         //左攻撃
         if (player->m_pos.x < m_pos.x && player->m_pos.x > m_pos.x - 64) {
             //攻撃状態へ
@@ -72,14 +72,14 @@ void Enemy3::StateIdle() {
         }
     }
     //移動中なら
-    if (move_flag) {
+    /*if (move_flag) {
         //走るアニメーション
         m_img.ChangeAnimation(E3ran);
     }
     else {
         //待機アニメーション
         m_img.ChangeAnimation(E3Step);
-    }
+    }*/
 }
 void Enemy3::StateAttack01()
 {
