@@ -17,6 +17,7 @@ class Enemy1 : public Base {
 	int m_hp;
     //Šeó‘Ô‚Å‚Ì‹““®
 	void StateIdle();
+	void StateStep();
 	void StateAttack();
 	void StateDamage();
 	void StateDown();

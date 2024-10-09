@@ -5,51 +5,64 @@
 void Enemy1::StateIdle()
 {
 	//移動量
-	const float move_speed = 6;
+	const float move_speed = 4;
 	//移動フラグ
 	bool move_flag = false;
 	//ジャンプ力
 	const float jump_pow = 12;
 	Base* player = Base::FindObject(eType_Player);
 	if (player) {
-		//左移動
-		if (player->m_pos.x < m_pos.x - 32) {//64ドット離れていると移動します
-			//移動量を設定
-			m_pos.x += -move_speed;
-			//反転フラグ
-			m_flip = true;
-			move_flag = true;
-		}
-		//右移動
-		if (player->m_pos.x > m_pos.x + 32) {
-			//移動力を設定
-			m_pos.x += move_speed;
-			//反転フラグ
-			m_flip = false;
-			move_flag = true;
-		}
+		CVector2D v = player->m_pos - m_pos;
+		if (abs(v.x) <= 510) {
 
-		//左攻撃
-		if (player->m_pos.x < m_pos.x && player->m_pos.x > m_pos.x - 32) {
-			//攻撃状態へ移行
-			m_state = eState_Attack;
-			m_attack_no++;
-			m_flip = true;
-		}
-		//右攻撃
-		if (player->m_pos.x > m_pos.x && player->m_pos.x < m_pos.x + 32) {
-			//攻撃状態へ
-			m_state = eState_Attack;
-			m_attack_no++;
-			m_flip = false;
+
+			//左移動
+			if (player->m_pos.x < m_pos.x - 64) {//64ドット離れていると移動します
+				//移動量を設定
+				m_pos.x += -move_speed;
+				//反転フラグ
+				m_flip = true;
+				move_flag = true;
+			}
+			//右移動
+			if (player->m_pos.x > m_pos.x + 64) {
+				//移動力を設定
+				m_pos.x += move_speed;
+				//反転フラグ
+				m_flip = false;
+				move_flag = true;
+			}
+			//左移動
+			if (player->m_pos.y < m_pos.y - 32) {//64ドット離れていると移動します
+				//移動量を設定
+				m_pos.y += -move_speed;
+				move_flag = true;
+			}
+			//右移動
+			if (player->m_pos.y > m_pos.y + 32) {
+				//移動力を設定
+				m_pos.y += move_speed;
+				move_flag = true;
+			}
 		}
 	}
 }
 void Enemy1::StateAttack()
 {
-	//攻撃アニメーションへの変更
-	//m_img.ChangeAnimation(eAnimAttack01, false);
+	//攻撃アニメーションへ変更
+	m_img.ChangeAnimation(eState_Attack, false);
+	//?番目のアニメーションの時発動
+	/*if (m_img.GetIndex() == ? ) {
+		if (m_flip) {
+			Base::Add(new Slash(m_pos + CVector2D(-64, -64), m_flip, eType_Enemmy_Attack, m_attack_no));
+		}
+		else {
+			Base::Add(new Slash(m_pos + CVector2D(64, -64), m_flip, eType_Enemmy_Attack, m_attack_no));
+		}
+	}*/
+	//アニメーションが終了したら
 	if (m_img.CheckAnimationEnd()) {
+		//通常状態へ移行
 		m_state = eState_Idle;
 	}
 }
@@ -71,11 +84,13 @@ Enemy1::Enemy1(const CVector2D& p, bool flip) :Base(eType_Enemy) {
 	m_img.ChangeAnimation(0);
 	//座標設定
 	m_pos = p;
-	//中心位置設定
-	m_img.SetCenter(100,100);
-	//当たり判定用矩形設定
-	m_rect = CRect(-100, -100, 100, 100);
+	
 	m_img.SetSize(200, 200);
+	//中心位置設定
+	m_img.SetCenter(100,190);
+	//当たり判定用矩形設定
+	m_rect = CRect(-45, -115, 45, -60);
+	
 	//ヒットポイント
 	m_hp = 5;
 	//反転フラグ
@@ -97,6 +112,7 @@ void Enemy1::Update()
 	switch (m_state) {
 		//通常状態
 	case eState_Idle:
+		StateIdle();
 		break;
 		//攻撃状態
 	case eState_Attack:
@@ -113,16 +129,16 @@ void Enemy1::Update()
 		break;
 	}
 	//落ちていたら落下中状態へ移行
-	if (m_is_ground && m_vec.y > GRAVITY * 4)
-		m_is_ground = false;
+	//if (m_is_ground && m_vec.y > GRAVITY * 4)
+	//	m_is_ground = false;
 	//重力による落下
-	m_vec.y += GRAVITY;
-	m_pos += m_vec;
+	//m_vec.y += GRAVITY;
+	//m_pos += m_vec;
 
 	//アニメーション更新
 	m_img.UpdateAnimation();
 	
-
+	
 }
 
 void Enemy1::Draw()
@@ -131,8 +147,12 @@ void Enemy1::Draw()
 	m_img.SetPos(GetScreenPos(m_pos));
 	//反転設定
 	m_img.SetPos(GetScreenPos(m_pos));
+	//反転設定
+	m_img.SetFlipH(m_flip);
 	//描画
 	m_img.Draw();
+	//当たり判定矩形表示
+	DrawRect();
 }
 
 void Enemy1::Collision(Base* b)
@@ -178,14 +198,7 @@ static TexAnim enemy1Idle[] = {
 	{ 2,18 },
 	{ 3,18 },
 };
-static TexAnim enemy1Battou[] = {
 
-	{ 38,10 },
-	{ 39,10 },
-	{ 40,10 },
-	{ 41,10 },
-
-};
 static TexAnim enemy1Step[] = {
 	{ 8,10 },
 	{ 9,10 },
@@ -221,7 +234,6 @@ static TexAnim enemy1Down[] = {
 };
 TexAnimData Enemy1_anim_data[] = {
 	ANIMDATA(enemy1Idle),
-	ANIMDATA(enemy1Battou),
 	ANIMDATA(enemy1Step),
 	ANIMDATA(enemy1Attack01),
 	ANIMDATA(enemy1Crouchi),
