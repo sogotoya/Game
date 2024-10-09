@@ -115,10 +115,10 @@ void Enemy2::StateAttack()
 	//?番目のアニメーションの時発動
 	/*if (m_img.GetIndex() == ? ) {
 		if (m_flip) {
-			Base::Add(new Slash(m_pos + CVector2D(-64, -64), m_flip, eType_Enemmy_Attack, m_attack_no));
+			Base::Add(m_pos + CVector2D(-64, -64), m_flip, eType_Enemmy_Attack, m_attack_no);
 		}
 		else {
-			Base::Add(new Slash(m_pos + CVector2D(64, -64), m_flip, eType_Enemmy_Attack, m_attack_no));
+			Base::Add(m_pos + CVector2D(64, -64), m_flip, eType_Enemmy_Attack, m_attack_no);
 		}
 	}*/
 	//アニメーションが終了したら
@@ -241,8 +241,8 @@ void Enemy2::Collision(Base* b)
 
 	case eType_Player_Attack:
 		//Slash型へキャスト、型変換できたら
-		/*if (Slash* s = dynamic_cast<Slash*>(b)) {
-			if (m_damage_no != s->GetAttacNO() && Base::CollisionRect(this, s)) {
+		
+			/*if (m_damage_no != s->GetAttacNO() && Base::CollisionRect(this, s)) {
 				//同じ攻撃の連続ダメージの防止
 				m_damage_no = s->GetAttacNO();
 				m_hp -= 50;
@@ -254,7 +254,7 @@ void Enemy2::Collision(Base* b)
 				}
 				Base::Add(new Effect("Effect_Blood", m_pos + CVector2D(0, -128), m_flip));
 			}
-		}
+		
 		break;*/
 		
 	case eType_Field:

@@ -102,26 +102,27 @@ void Enemy3::StateAttack01()
     }
 
 }
-void Enemy3::StateAttack02()
+/*void Enemy3::StateAttack02()
 {
     //攻撃アニメーションへ変更
     m_img.ChangeAnimation(E3Attack02, false);
     //3番目のパターンなら
-    /*if (m_img.GetIndex() == 3) {
+    if (m_img.GetIndex() == 3) {
         if (m_flip) {
             // Base::Add(new Slash(m_pos + CVector2D(-64, -64), m_flip, eType_Enemy_Attack, m_attack_no));
         }
         else {
             // Base::Add(new Slash(m_pos + CVector2D(64, -64), m_flip, eType_Enemy_Attack, m_attack_no));
         }
-    }*/
+    }
+
     //アニメーションが終了したら
     if (m_img.CheckAnimationEnd()) {
         //通常状態へ移行
         m_state = eState_Idle;
     }
 
-}
+}*/
 void Enemy3::StateAttack03()
 {
     //攻撃アニメーションへ変更
@@ -174,9 +175,9 @@ void Enemy3::Update()
         StateAttack01();
         break;
         //攻撃状態02
-    case eState_Attack02:
+    /*case eState_Attack02:
         StateAttack02();
-        break;
+        break;*/
         //攻撃状態03
     case eState_Attack03:
         StateAttack03();

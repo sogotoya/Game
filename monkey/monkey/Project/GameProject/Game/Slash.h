@@ -5,7 +5,7 @@ class Slash : public Base {
 private:
 	//画像オブジェクト
 	CImage m_img;
-	//反転フラグ
+	//攻撃の向き
 	bool m_flip;
 	//攻撃番号
 	int m_attack_no;
