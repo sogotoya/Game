@@ -6,7 +6,6 @@ bar::bar(const CVector2D& p, bool flip):Base(eType_bar)
 {
 	//画像複製
 	m_img = COPY_RESOURCE("bar", CImage);
-	//m_bar2 = COPY_RESOURCE("bar2"CImage);
 	//座標設定
 	m_pos = p;
 	//画像サイズ設定
