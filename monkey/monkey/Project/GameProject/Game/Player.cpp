@@ -2,6 +2,7 @@
 #include "Bullet.h"
 #include "Map.h"
 #include"Bar.h"
+#include"Bar2.h"
 Player::Player(const CVector2D& p, bool flip) :
 	Base(eType_Player) {
 	//画像複製
@@ -27,7 +28,7 @@ Player::Player(const CVector2D& p, bool flip) :
 void Player::StateIdle()
 {
 	//移動量
-	const float move_speed = 8;
+	const float move_speed = 100;//8
 	//移動フラグ
 	bool move_flag = false;
 	//左移動
@@ -60,7 +61,7 @@ void Player::StateIdle()
 
 	}
 	//ジャンプ力
-	const float jump_pow = 15;
+	const float jump_pow = 50;
 
 	//ジャンプ
 	if (m_is_ground && PUSH(CInput::eButton2)) {
@@ -268,12 +269,30 @@ void Player::Collision(Base* b)
 
 
 		}
-	
-			
-			
+	case eType_bar2:
+		if (Base::CollisionRect(this, b)) {
+			if (m_pos_old.y + m_rect.m_bottom <= b->m_pos_old.y + b->m_rect.m_top) {
+				m_pos.y = b->m_pos.y + b->m_rect.m_top;
+				m_is_ground = true;//着地
+				m_vec.y = 0;
+
+			}
+
+		}
+	case eType_bar3:
+		if (Base::CollisionRect(this, b)) {
+			if (m_pos_old.y + m_rect.m_bottom <= b->m_pos_old.y + b->m_rect.m_top) {
+				m_pos.y = b->m_pos.y + b->m_rect.m_top;
+				m_is_ground = true;//着地
+				m_vec.y = 0;
+
+			}
+
+		}
 		break;
 	}
-	
+
+
 }
 
 static TexAnim playerIdle[] = {
