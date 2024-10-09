@@ -19,6 +19,9 @@ enum {
     //ûMŒ³
     eType_Enemy3,
     eType_bar,
+    eType_bar2,
+    eType_bar3,
+    eType_bar4,
     //\‰Í
     eType_Enemy2,
 

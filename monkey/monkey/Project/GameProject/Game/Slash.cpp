@@ -1,33 +1,19 @@
 #include "Slash.h"
 Slash::Slash(const CVector2D& pos, bool flip, int type, int attack_no) : Base(type)
 {
-	//反転フラグ
+	//攻撃の向き
 	m_flip = flip;
-	//画像複製
-	m_img = COPY_RESOURCE("Effect_Slash", CImage);
-	//座標設定
+	//攻撃発生位置
 	m_pos = pos;
-	//表示サイズの設定
-	m_img.SetCenter(128, 128);
-	//中心位置設定
-	m_img.SetCenter(64, 64);
 	//当たり判定用矩形
-	m_rect = CRect(-64, -64, 64, 64);
-	//再生アニメーション設定(非ループ）
-	m_img.ChangeAnimation(0, false);
+	m_rect = CRect(-64, -64, 64, 0); //-30, -98, 30, 0
 	//攻撃番号
 	m_attack_no = attack_no;
 }
 
 void Slash::Update()
 {
-	//アニメーション更新
-	m_img.UpdateAnimation();
-	//アニメーション終了チェック
-	if (m_img.CheckAnimationEnd()) {
-		//エフェクトを解除
-		SetKill();
-	}
+	
 }
 
 void Slash::Draw()
