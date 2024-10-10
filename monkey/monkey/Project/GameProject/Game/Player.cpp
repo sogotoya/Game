@@ -3,6 +3,7 @@
 #include "Map.h"
 #include"Bar.h"
 #include"Bar2.h"
+#include"Slash.h"
 Player::Player(const CVector2D& p, bool flip) :
 	Base(eType_Player) {
 	//画像複製
@@ -21,7 +22,7 @@ Player::Player(const CVector2D& p, bool flip) :
 	m_state = eState_Idle;
 	//着地フラグ
 	m_is_ground = true;
-
+	m_hp = 100;
 
 
 }
@@ -101,6 +102,14 @@ void Player::StateAttack01()
 
 	//攻撃アニメーションへ変更
 	m_img.ChangeAnimation(eAnimAttack01, false);
+	if (m_img.GetIndex() == 1) {
+		if (m_flip) {
+			Base::Add((new Slash(m_pos + CVector2D(-64, -64), m_flip, eType_Enemy_Attack, m_attack_no)));
+		}
+		else {
+			Base::Add((new Slash(m_pos + CVector2D(64, -64), m_flip, eType_Enemy_Attack, m_attack_no)));
+		}
+	}
 	//アニメーションが終了したら
 	if (m_img.CheckAnimationEnd()) {
 		//通常状態へ移行
@@ -129,6 +138,14 @@ void Player::StateAttack02()
 
 	//攻撃アニメーションへ変更
 	m_img.ChangeAnimation(eAnimAttack02, false);
+	if (m_img.GetIndex() == 1) {
+		if (m_flip) {
+			Base::Add((new Slash(m_pos + CVector2D(-64, -64), m_flip, eType_Player_Attack, m_attack_no)));
+		}
+		else {
+			Base::Add((new Slash(m_pos + CVector2D(64, -64), m_flip, eType_Player_Attack, m_attack_no)));
+		}
+	}
 	//ジャンプをして左の方向に攻撃をする
 	if (m_is_ground == false) {
 		if (m_flip == false)
@@ -137,7 +154,7 @@ void Player::StateAttack02()
 			m_pos.x -= move_speed;
 
 	}
-
+	
 
 	//アニメーションが終了したら
 	if (m_img.CheckAnimationEnd()) {
@@ -290,6 +307,22 @@ void Player::Collision(Base* b)
 
 		}
 		break;
+	case eType_Enemy_Attack:
+		//Slash型へキャスト、型変換できたら
+		if (Slash* s = dynamic_cast<Slash*>(b)) {
+			if (Base::CollisionRect(this, s)) {
+				
+				
+				m_hp -= 5;
+				if (m_hp <= 0) {
+					m_state = eState_Down;
+				}
+				else {
+					m_state = eState_Damage;
+				}
+				//Base::Add(new Effect("Effect_Blood", m_pos + CVector2D(0, -128), m_flip));
+			}
+		}
 	}
 }
 
@@ -364,13 +397,13 @@ static TexAnim playerJumpDown[] = {
 
 TexAnimData player_anim_data[] = {
 	ANIMDATA(playerIdle),
-	ANIMDATA(playerStep),
-	ANIMDATA(playerJumpup),
-	ANIMDATA(playerJumpDown),
-	ANIMDATA(playerAttack01),
-	ANIMDATA(playerCrouchi),
-	ANIMDATA(playerBattou),
-	ANIMDATA(playerAttack02),
-	ANIMDATA(playerDown),
+	ANIMDATA(playerBattou),//playerStep
+	ANIMDATA(playerStep),//playerJumpup
+	ANIMDATA(playerAttack01),//playerJumpDown
+	ANIMDATA(playerAttack02),//playerAttack01
+	ANIMDATA(playerCrouchi),//playerCrouchi
+	ANIMDATA(playerDown),//playerBattou
+	ANIMDATA(playerJumpup),//playerAttack02
+	ANIMDATA(playerJumpDown),//playerDown
 };
 

@@ -9,6 +9,8 @@ private:
 	bool m_flip;
 	//UŒ‚”Ô†
 	int m_attack_no;
+
+	int m_count;
 public:
 	Slash(const CVector2D& pos, bool flip, int type, int attack_no);
 	void Update();
