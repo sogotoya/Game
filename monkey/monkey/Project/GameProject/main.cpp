@@ -121,6 +121,13 @@ void Init(void)
 	Base::Add(new bar3(CVector2D(10500, 600), true));
 	ADD_RESOURCE("bar4", CImage::CreateImage("Image/bar.png", bar_anim_data, 32, 9));
 	Base::Add(new bar4(CVector2D(14300, 500), true));
+
+
+
+
+
+
+
 	//è\âÕ
 	ADD_RESOURCE("Enemy2", CImage::CreateImage("Image/gobuta.png", enemy2_anim_data, 150, 150));
 	Base::Add(new Enemy2(CVector2D(300, 300), true));
