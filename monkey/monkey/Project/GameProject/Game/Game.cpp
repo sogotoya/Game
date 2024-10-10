@@ -19,7 +19,7 @@
 Game::Game():Base(eType_Scene)
 {
 	//ûMŒ³
-	Base::Add(new Enemy3(CVector2D(500/*14300*/, 500), true));
+	Base::Add(new Enemy3(CVector2D(14300, 500), true));
 	Base::Add(new bar2(CVector2D(10000, 200), true));
 	Base::Add(new bar(CVector2D(3400, 500), true));
 	Base::Add(new bar3(CVector2D(10700, 600), true));
