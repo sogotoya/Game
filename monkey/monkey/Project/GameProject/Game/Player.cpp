@@ -162,7 +162,7 @@ void Player::StateAttack02()
 		m_state = eState_Idle;
 	}
 
-8}
+}
 void Player::StateDamage()
 {
 	//m_img.ChangeAnimation(eAnimDamage, false);
