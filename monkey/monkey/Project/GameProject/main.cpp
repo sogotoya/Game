@@ -125,7 +125,7 @@ void Init(void)
 	
 	ADD_RESOURCE("Map_Tip1", CImage::CreateImage("Image/pa-tu.png" ));
 	
-	ADD_RESOURCE("Tp", CImage::CreateImage("Image/tp.png"));
+	ADD_RESOURCE("Goal", CImage::CreateImage("Image/bu.png"));
 	
 
 //èºë∫

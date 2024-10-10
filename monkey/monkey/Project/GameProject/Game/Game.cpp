@@ -34,14 +34,18 @@ Game::Game():Base(eType_Scene)
 
 	//è\âÕ
 	
-	Base::Add(new Enemy2(CVector2D(300, 300), true));
+	Base::Add(new Enemy2(CVector2D(2000, 300), true));
+	Base::Add(new Enemy2(CVector2D(5000, 300), true));
+	Base::Add(new Enemy2(CVector2D(6000, 300), true));
+	
 	
 
 //èºë∫
 	
 	Base::Add(new Player(CVector2D(400, 400), true));
 	
-	Base::Add(new Enemy1(CVector2D(300, 300), true));
+	Base::Add(new Enemy1(CVector2D(3000, 300), true));
+	Base::Add(new Enemy1(CVector2D(8000, 500), true));
 	
 
 
