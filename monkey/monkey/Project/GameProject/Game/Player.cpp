@@ -326,9 +326,19 @@ void Player::Collision(Base* b)
 		}
 	case eType_Goal:
 		if (Base::CollisionRect(this, b)) {
-			
-			if (Goal* g = dynamic_cast<Goal*>(b))
-				g->SetGoal();
+			b->SetKill();
+		}
+		break;
+	case eType_Bullet:
+		if (Base::CollisionRect(this, b)) {
+			b->SetKill();
+			m_hp -= 5;
+			if (m_hp <= 0) {
+				m_state = eState_Down;
+			}
+			else {
+				m_state = eState_Damage;
+			}
 		}
 		break;
 	}
@@ -407,13 +417,13 @@ static TexAnim playerJumpDown[] = {
 
 TexAnimData player_anim_data[] = {
 	ANIMDATA(playerIdle),
-	ANIMDATA(playerBattou),//playerStep
-	ANIMDATA(playerStep),//playerJumpup
-	ANIMDATA(playerAttack01),//playerJumpDown
-	ANIMDATA(playerAttack02),//playerAttack01
-	ANIMDATA(playerCrouchi),//playerCrouchi
-	ANIMDATA(playerDown),//playerBattou
-	ANIMDATA(playerJumpup),//playerAttack02
-	ANIMDATA(playerJumpDown),//playerDown
+	ANIMDATA(playerBattou),//1
+	ANIMDATA(playerStep),//2
+	ANIMDATA(playerAttack01),//3
+	ANIMDATA(playerAttack02),//4
+	ANIMDATA(playerCrouchi),//5
+	ANIMDATA(playerDown),//6
+	ANIMDATA(playerJumpup),//7
+	ANIMDATA(playerJumpDown),//8
 };
 
