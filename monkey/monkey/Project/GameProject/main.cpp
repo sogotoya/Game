@@ -122,7 +122,7 @@ void Init(void)
 	Base::Add(new bar3(CVector2D(10500, 600), true));
 	ADD_RESOURCE("bar4", CImage::CreateImage("Image/bar.png", bar_anim_data, 32, 9));
 	Base::Add(new bar4(CVector2D(14300, 500), true));
-	Base::Add(new Bullet(CVector2D(200,200)));
+	//Base::Add(new Bullet(CVector2D(200,200)));
 
 
 

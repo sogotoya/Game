@@ -2,6 +2,7 @@
 #include "../Base/Base.h"
 #include"Map.h"
 #include"bar4.h"
+#include"Bullet.h"
 
 
 Enemy3::Enemy3(const CVector2D& pos, bool flip) :Base(eType_Enemy3)
@@ -68,7 +69,7 @@ void Enemy3::StateIdle() {
                 m_state = eState_Attack01;
                 m_attack_no++;
                 m_flip = true;
-
+                Base::Add(new Bullet (CVector2D(m_pos)));
             }
         }
     }
