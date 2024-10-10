@@ -26,7 +26,7 @@ enum {
     eType_Enemy2,
 
     //¼‘º
-
+    
 
 };
 //d—Í‰Á‘¬“x

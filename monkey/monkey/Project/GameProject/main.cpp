@@ -12,6 +12,7 @@
 #include"Game/Bar2.h"
 #include"Game/Bar3.h"
 #include"Game/Bar4.h"
+//#include"Title/Title.h"
 
 
 
@@ -133,8 +134,8 @@ void Init(void)
 	Base::Add(new Player(CVector2D(400, 400), true));
 	ADD_RESOURCE("Enemy1", CImage::CreateImage("Image/Bat.png", Enemy1_anim_data, 150, 150));
 	Base::Add(new Enemy1(CVector2D(300, 300), true));
-	
-
+	//ADD_RESOURCE("Title", CImage::CreateImage("Image/sima.png"));
+	//Base::Add(new Title());
 
 
 
