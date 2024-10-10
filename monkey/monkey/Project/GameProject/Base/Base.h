@@ -22,6 +22,7 @@ enum {
     eType_bar2,
     eType_bar3,
     eType_bar4,
+    eType_rast,
     //\‰Í
     eType_Enemy2,
 

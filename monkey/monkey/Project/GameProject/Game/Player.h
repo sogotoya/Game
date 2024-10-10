@@ -23,7 +23,7 @@ private:
 		eAnimBattou,
 		eAnimAttack02,
 		eAnimDown,
-		
+		eAnimDmg,
 	};
 	//ó‘Ô•Ï”
 	int m_state;

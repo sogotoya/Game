@@ -117,7 +117,7 @@ void Init(void)
 	ADD_RESOURCE("bar", CImage::CreateImage("Image/bar.png",bar_anim_data, 32, 9));
 	
 	ADD_RESOURCE("bar3", CImage::CreateImage("Image/bar.png", bar_anim_data, 32, 9));
-	
+	ADD_RESOURCE("kabe", CImage::CreateImage("Image/kuria.png"));
 	ADD_RESOURCE("bar4", CImage::CreateImage("Image/bar.png", bar_anim_data, 32, 9));
 	
 	//è\âÕ

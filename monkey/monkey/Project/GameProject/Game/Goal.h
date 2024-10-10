@@ -3,6 +3,7 @@
 class Goal : public Base {
 private:
 	//画像オブジェクト
+	CImage m_kabegmi;
 	CImage m_img;
 	bool m_is_goal;
 public:

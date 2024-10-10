@@ -15,6 +15,7 @@
 #include"Game/Bullet.h"
 #include"Title/Title.h"
 #include"Game/Goal.h"
+#include"Game/rast.h"
 
 Game::Game():Base(eType_Scene)
 {
@@ -25,8 +26,9 @@ Game::Game():Base(eType_Scene)
 	Base::Add(new bar3(CVector2D(10700, 600), true));
 	Base::Add(new bar4(CVector2D(14300, 1000), true));
 	Base::Add(new Map);
+	
 	//Base::Add(new Bullet(CVector2D(200,200)));
-
+	
 
 
 
@@ -42,7 +44,7 @@ Game::Game():Base(eType_Scene)
 
 //松村
 	
-	Base::Add(new Player(CVector2D(400, 400), true));
+	Base::Add(new Player(CVector2D(13000, 400), true));
 	
 	Base::Add(new Enemy1(CVector2D(3000, 300), true));
 	Base::Add(new Enemy1(CVector2D(8000, 500), true));
@@ -67,11 +69,17 @@ void Game::Update()
 		case 1:
 			//ゴールが無ければゲームシーン終了
 			if (!Base::FindObject(eType_Goal)) {
-		//すべてのオブジェクトを破壊
-			Base::KillAll();
-		//タイトルシーンへ
-			Base::Add(new Title());
+				Base::Add(new rast);
+				m_gamestate++;
 		}
+			break;
+		case 2:
+			if (PUSH(CInput::eButton1)) {
+				//すべてのオブジェクトを破壊
+				Base::KillAll();
+				//タイトルシーンへ
+				Base::Add(new Title());
+			}
 			break;
 	}
 	

@@ -166,7 +166,7 @@ void Player::StateAttack02()
 }
 void Player::StateDamage()
 {
-	//m_img.ChangeAnimation(eAnimDamage, false);
+	m_img.ChangeAnimation(eAnimDmg, false);
 	if (m_img.CheckAnimationEnd()) {
 		m_state = eState_Idle;
 	}
@@ -327,6 +327,7 @@ void Player::Collision(Base* b)
 	case eType_Goal:
 		if (Base::CollisionRect(this, b)) {
 			b->SetKill();
+			
 		}
 		break;
 	case eType_Bullet:
@@ -414,16 +415,20 @@ static TexAnim playerJumpDown[] = {
     { 22,3 },
     { 23,3 },
 };
-
+static TexAnim playerDmg[] = {
+	{ 19,3 },
+	
+};
 TexAnimData player_anim_data[] = {
 	ANIMDATA(playerIdle),
-	ANIMDATA(playerBattou),//1
 	ANIMDATA(playerStep),//2
-	ANIMDATA(playerAttack01),//3
-	ANIMDATA(playerAttack02),//4
-	ANIMDATA(playerCrouchi),//5
-	ANIMDATA(playerDown),//6
 	ANIMDATA(playerJumpup),//7
 	ANIMDATA(playerJumpDown),//8
+	ANIMDATA(playerAttack01),//3
+	ANIMDATA(playerCrouchi),//5
+	ANIMDATA(playerBattou),//1
+	ANIMDATA(playerAttack02),//4
+	ANIMDATA(playerDown),//6
+	ANIMDATA(playerDmg),//6
 };
 

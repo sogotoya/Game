@@ -5,6 +5,7 @@ Goal::Goal(const CVector2D& pos)
 {
 	//画像複製
 	m_img = COPY_RESOURCE("Goal", CImage);
+	
 	//中心位置設定横、縦
 	m_img.SetCenter(48, 128);
 	//座標設定

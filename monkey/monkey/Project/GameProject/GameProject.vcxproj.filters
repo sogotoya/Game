@@ -59,6 +59,9 @@
     <ClCompile Include="TItle\Title.cpp">
       <Filter>Title</Filter>
     </ClCompile>
+    <ClCompile Include="Game\rast.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Base">
@@ -129,6 +132,9 @@
     </ClInclude>
     <ClInclude Include="TItle\Title.h">
       <Filter>Title</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\rast.h">
+      <Filter>Game</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
