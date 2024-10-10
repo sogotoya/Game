@@ -4,6 +4,7 @@
 #include"Bar.h"
 #include"Bar2.h"
 #include"Slash.h"
+#include"Goal.h"
 Player::Player(const CVector2D& p, bool flip) :
 	Base(eType_Player) {
 	//âÊëúï°êª
@@ -323,6 +324,13 @@ void Player::Collision(Base* b)
 				//Base::Add(new Effect("Effect_Blood", m_pos + CVector2D(0, -128), m_flip));
 			}
 		}
+	case eType_Goal:
+		if (Base::CollisionRect(this, b)) {
+			
+			if (Goal* g = dynamic_cast<Goal*>(b))
+				g->SetGoal();
+		}
+		break;
 	}
 
 
