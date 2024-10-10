@@ -48,7 +48,7 @@ void bar::Draw()
 {
 	m_img.SetPos(GetScreenPos(m_pos));
 	m_img.Draw();
-	DrawRect();
+	//DrawRect();
 	
 			
 }

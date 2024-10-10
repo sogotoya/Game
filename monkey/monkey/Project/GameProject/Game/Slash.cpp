@@ -24,6 +24,6 @@ void Slash::Update()
 void Slash::Draw()
 {
 	
-	DrawRect();
+	//DrawRect();
 
 }
