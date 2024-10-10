@@ -29,7 +29,7 @@ Player::Player(const CVector2D& p, bool flip) :
 void Player::StateIdle()
 {
 	//移動量
-	const float move_speed = 8;//8
+	const float move_speed = 50;//8
 	//移動フラグ
 	bool move_flag = false;
 	//左移動
@@ -260,28 +260,28 @@ void Player::Collision(Base* b)
 				m_is_ground = true;
 			}
 		}
-		/*case
-			//Field型へキャスト、型変換できたら
-			if (Map* f = dynamic_cast<Map*>(b)) {
-				//地面より下にいったら
-				if (m_pos.y > f->GetGroundY()) {
-					//地面の高さに戻す
-					m_pos.y = f->GetGroundY();
-					//落下速度リセット
-					m_vec.y = 0;
-					//接地フラグON
-					m_is_ground = true;
+	/*case
+		//Field型へキャスト、型変換できたら
+		if (Map* f = dynamic_cast<Map*>(b)) {
+			//地面より下にいったら
+			if (m_pos.y > f->GetGroundY()) {
+				//地面の高さに戻す
+				m_pos.y = f->GetGroundY();
+				//落下速度リセット
+				m_vec.y = 0;
+				//接地フラグON
+				m_is_ground = true;
 
-				}
 			}
-			break;*/
+		}
+		break;*/
 	case eType_bar:
 		if (Base::CollisionRect(this, b)) {
 			if (m_pos_old.y + m_rect.m_bottom <= b->m_pos_old.y + b->m_rect.m_top) {
 				m_pos.y = b->m_pos.y + b->m_rect.m_top;
 				m_is_ground = true;//着地
 				m_vec.y = 0;
-
+				
 			}
 
 
@@ -324,6 +324,8 @@ void Player::Collision(Base* b)
 			}
 		}
 	}
+
+
 }
 
 static TexAnim playerIdle[] = {
@@ -388,7 +390,7 @@ static TexAnim playerJumpup[] = {
 	{ 18,3 },
 };
 static TexAnim playerJumpDown[] = {
-	{19, 3 },
+	{ 19,3 },
     { 20,3 },
     { 21,3 },
     { 22,3 },

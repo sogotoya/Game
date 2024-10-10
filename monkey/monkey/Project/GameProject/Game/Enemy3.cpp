@@ -63,15 +63,16 @@ void Enemy3::StateIdle() {
         //左攻撃
         if (player->m_pos.x < m_pos.x && player->m_pos.x > m_pos.x - 1920) {
             m_cnt++;
-            if (m_cnt >= 60) {
+            if (m_cnt >= 30) {
                 //攻撃状態へ
                 m_cnt = 0;
                 m_state = eState_Attack01;
                 m_attack_no++;
                 m_flip = true;
-                Base::Add(new Bullet (CVector2D(m_pos)));
+                
             }
         }
+     
     }
     //移動中なら
     /*if (move_flag) {
@@ -89,14 +90,11 @@ void Enemy3::StateAttack01()
     //攻撃アニメーションへ変更
     m_img.ChangeAnimation(E3Attack01, false);
     //3番目のパターンなら
-    /*if (m_img.GetIndex() == 3) {
-        if (m_flip) {
-           // Base::Add(new Slash(m_pos + CVector2D(-64, -64), m_flip, eType_Enemy_Attack, m_attack_no));
-        }
-        else {
-           // Base::Add(new Slash(m_pos + CVector2D(64, -64), m_flip, eType_Enemy_Attack, m_attack_no));
-        }
-    }*/
+    if (m_img.GetIndex() == 9) {
+            Base::Add(new Bullet(m_pos + CVector2D(0, -60), true));
+        
+       
+    }
     //アニメーションが終了したら
     if (m_img.CheckAnimationEnd()) {
         //通常状態へ移行
@@ -266,21 +264,22 @@ static TexAnim Enemy3Ran[] = {
 static TexAnim Enemy3Attack01[] = {
     //弓
 
-    { 242,5 },
-    { 243,5 },
-    { 244,10 },
-    { 245,11 },
-    { 246,12 },
-    { 247,13 },
-    { 248,14 },
-    { 249,15 },
-    { 250,10 },
-    { 251,9},
-    { 252,7 },
-    { 253,6 },
-    { 254,5 },
-    { 255,5 },
-    { 256,5 },
+    { 242,2 },
+    { 243,2 },
+    { 244,3 },
+    { 245,3 },
+    { 246,3 },
+    { 247,3 },
+    { 248,3 },
+    { 249,3 },
+    { 250,3 },
+    { 251,1},
+    { 251,3 },
+    { 252,3 },
+    { 253,3 },
+    { 254,2 },
+    { 255,2 },
+    { 256,2 },
 
 
 
