@@ -18,12 +18,12 @@ void Bullet::Update()
 {
 	const int move_speed = 6;//’e‚Ì‘¬‚³
 	m_pos.x -= move_speed;//’e‚Ì•ûŒü
-
-	m_rad = 15;
+m_rad = 15;
+m_pos_old = m_pos;
 }
 void Bullet::Draw()
 {
-	m_img.SetPos(m_pos);
+	m_img.SetPos(GetScreenPos(m_pos));
 	m_img.Draw();
 	// Utility::DrawCircle(m_pos, m_rad, CVector4D(1, 0, 0, 0.5));
 
