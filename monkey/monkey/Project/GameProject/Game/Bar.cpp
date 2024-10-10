@@ -27,7 +27,7 @@ void bar::Update()
 	
 	if (turn == 0)
 	{
-		m_pos.y += 6;
+		m_pos.y += 1;
 	}
 	if (m_pos.y > 4 * MAP_TIP_SIZE)
 	{
@@ -35,7 +35,7 @@ void bar::Update()
 	}
 	if ( turn == 1)
 	{
-		m_pos.y -= 6;
+		m_pos.y -= 4;
 	}
 	if (m_pos.y < 1 * MAP_TIP_SIZE)
 	{
