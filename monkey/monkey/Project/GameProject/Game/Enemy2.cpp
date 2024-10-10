@@ -1,7 +1,7 @@
 #include "Enemy2.h"
 #include "Map.h"
 #include "../Base/Base.h"
-
+#include "Slash.h"
 
 static TexAnim Enemy2Step[] = {//0
 
@@ -116,15 +116,15 @@ void Enemy2::StateAttack()
 {
 	//攻撃アニメーションへ変更
 	m_img.ChangeAnimation(e2Anim_Attack, false);
-	//?番目のアニメーションの時発動
-	/*if (m_img.GetIndex() == ? ) {
+	//6番目のアニメーションの時発動
+	if (m_img.GetIndex() == 6 ) {
 		if (m_flip) {
-			Base::Add(m_pos + CVector2D(-64, -64), m_flip, eType_Enemmy_Attack, m_attack_no);
+			Base::Add((new Slash (m_pos + CVector2D(-64, -64), m_flip, eType_Enemy_Attack, m_attack_no)));
 		}
 		else {
-			Base::Add(m_pos + CVector2D(64, -64), m_flip, eType_Enemmy_Attack, m_attack_no);
+			Base::Add((new Slash(m_pos + CVector2D(64, -64), m_flip, eType_Enemy_Attack, m_attack_no)));
 		}
-	}*/
+	}
 	//アニメーションが終了したら
 	if (m_img.CheckAnimationEnd()) {
 		//通常状態へ移行
@@ -171,7 +171,7 @@ Enemy2::Enemy2(const CVector2D& pos, bool flip)
 	//攻撃番号
 	m_attack_no = rand();
 	//ダメージ番号
-	m_damage_no = -5;
+	m_damage_no = -1;
 }
 
 void Enemy2::Update()
@@ -245,21 +245,22 @@ void Enemy2::Collision(Base* b)
 
 	case eType_Player_Attack:
 		//Slash型へキャスト、型変換できたら
-		
-			/*if (m_damage_no != s->GetAttacNO() && Base::CollisionRect(this, s)) {
-				//同じ攻撃の連続ダメージの防止
-				m_damage_no = s->GetAttacNO();
-				m_hp -= 50;
+		if (Slash* s = dynamic_cast<Slash*>(b)) {
+			if (Base::CollisionRect(this, s)) {
+
+
+				m_hp -= 5;
 				if (m_hp <= 0) {
 					m_state = eState_Down;
 				}
 				else {
 					m_state = eState_Damage;
 				}
-				Base::Add(new Effect("Effect_Blood", m_pos + CVector2D(0, -128), m_flip));
+				//Base::Add(new Effect("Effect_Blood", m_pos + CVector2D(0, -128), m_flip));
 			}
+		}
 		
-		break;*/
+		break;
 		
 	case eType_Field:
 		//Field型へキャスト、型変換できたら
