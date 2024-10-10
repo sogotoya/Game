@@ -1,6 +1,7 @@
 #include "Enemy3.h"
 #include "../Base/Base.h"
 #include"Map.h"
+#include"bar4.h"
 
 
 Enemy3::Enemy3(const CVector2D& pos, bool flip) :Base(eType_Enemy3)
@@ -8,9 +9,10 @@ Enemy3::Enemy3(const CVector2D& pos, bool flip) :Base(eType_Enemy3)
 	//画像複製
 	m_img = COPY_RESOURCE("Enemy3", CImage);
     //再生アニメーション設定
-    m_img.ChangeAnimation(0);
+    m_img.ChangeAnimation(7);
     //座標
     m_pos_old = m_pos = pos;
+    m_cnt = 0;
     //画像サイズ
     m_img.SetSize(300, 300);
     //中心位置設定
@@ -35,10 +37,11 @@ Enemy3::Enemy3(const CVector2D& pos, bool flip) :Base(eType_Enemy3)
 }
 void Enemy3::StateIdle() {
     //移動量
-    const float move_speed = 6;
+   // const float move_speed = 6;
     //移動フラグ
     bool move_flag = false;
     Base* player = Base::FindObject(eType_Player);
+    m_img.ChangeAnimation(7);
     if (player) {
         //左移動
         /*if (player->m_pos.x < m_pos.x - 32) {
@@ -57,18 +60,16 @@ void Enemy3::StateIdle() {
             move_flag = true;
         }*/
         //左攻撃
-        if (player->m_pos.x < m_pos.x && player->m_pos.x > m_pos.x - 64) {
-            //攻撃状態へ
-            m_state = eState_Attack01;
-            m_attack_no++;
-            m_flip = true;
-        }
-        //右攻撃
-        if (player->m_pos.x > m_pos.x && player->m_pos.x < m_pos.x + 64) {
-            //攻撃状態へ
-            m_state = eState_Attack01;
-            m_attack_no++;
-            m_flip = false;
+        if (player->m_pos.x < m_pos.x && player->m_pos.x > m_pos.x - 1920) {
+            m_cnt++;
+            if (m_cnt >= 60) {
+                //攻撃状態へ
+                m_cnt = 0;
+                m_state = eState_Attack01;
+                m_attack_no++;
+                m_flip = true;
+
+            }
         }
     }
     //移動中なら
@@ -161,7 +162,7 @@ void Enemy3::StateDown()
 
 void Enemy3::Update()
 {
-    //m_img.ChangeAnimation(6);
+    //m_img.ChangeAnimation(7);
     //m_img.UpdateAnimation();
     //return;
     m_pos_old = m_pos;
@@ -228,24 +229,24 @@ void Enemy3::Collision(Base* b)
                 m_vec.y = 0;
                 //着地フラグON
                 m_is_ground = true;
+
             }
         }
         break;
-
-    /*case eType_Field:
-        //Field型へキャスト、型変換できたら
-        if (Map* f = dynamic_cast<Map*>(b)) {
-            //地面より下にいったら
-            if (m_pos.y > f->GetGroundY()) {
-                //地面の高さに戻す
-                m_pos.y = f->GetGroundY();
-                //落下速度リセット
+    case eType_bar4:
+        if (Base::CollisionRect(this, b)) {
+            if (m_pos_old.y + m_rect.m_bottom <= b->m_pos_old.y + b->m_rect.m_top) {
+                m_pos.y = b->m_pos.y + b->m_rect.m_top;
+                m_is_ground = true;//着地
                 m_vec.y = 0;
-                //接地フラグON
-                m_is_ground = true;
+
             }
+
         }
-        break;*/
+
+            break;
+
+        
     }
 
 }
@@ -363,6 +364,21 @@ static TexAnim Enemy3Down[] = {
     {369,9},
     {370,9},
 };
+static TexAnim Enemy3taiki[] = {
+    {0,5},
+    {1,5},
+    {2,5},
+    {3,5},
+    {4,5},
+    {5,5},
+    {6,5},
+    {7,5},
+    {8,5},
+    {9,5},
+    {10,5},
+    {11,5},
+};
+
 TexAnimData enemy3_anim_data[] = {
     ANIMDATA(Enemy3Ran),
     ANIMDATA(Enemy3Attack01),
@@ -371,4 +387,5 @@ TexAnimData enemy3_anim_data[] = {
     ANIMDATA(Enemy3Step),
     ANIMDATA(Enemy3Dmg),
     ANIMDATA(Enemy3Down),
+    ANIMDATA(Enemy3taiki),
 };
