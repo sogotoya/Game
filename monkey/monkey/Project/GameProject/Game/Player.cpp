@@ -15,7 +15,7 @@ Player::Player(const CVector2D& p, bool flip) :
 	//中心位置設定
 	m_img.SetCenter(50, 100);
 	m_img.SetSize(100, 100);
-	m_rect = CRect(-30,-90, 30, 0);
+	m_rect = CRect(-30,-80, 30, 0);
 	//反転フラグ
 	//m_flip = flip;
 	//通常状態へ
@@ -172,7 +172,7 @@ void Player::StateDamage()
 }
 void Player::StateDown()
 {
-	//m_img.ChangeAnimation(eAnimDown, false);
+	m_img.ChangeAnimation(eAnimDown, false);
 	if (m_img.CheckAnimationEnd()) {
 		m_kill = true;
 	}

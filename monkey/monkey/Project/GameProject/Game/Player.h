@@ -18,28 +18,11 @@ private:
 		eAnimRun,
 		eAnimJumpUp,
 		eAnimJumpDown,
-		eAnimAttack01,
-		eAnimCrouchi,
-		eAnimAttack01End,
-		eAnimAttack02,
-		eAnimAttack02End,
-		eAnimAttack03,
-		eAnimAttack03End,
-		eAnimDamage,
-		eAnimDamageEnd,
-		eAnimDeath,
+		eAnimAttack01,//
+		eAnimCrouchi,//
+		eAnimBattou,//
+		eAnimAttack02,//
 		eAnimDown,
-		eAnimDownGround,
-		eAnimWakeUp,
-		eAnimGuard,
-		eAnimGuardEnd,
-		eAnimCrash,
-		eAnimCrashEnd,
-		eAnimExtAttack01,
-		eAnimExtAttack01End,
-		eAnimExtAttack02,
-		eAnimExtAttack02End,
-		eAnimStep,
 		
 	};
 	//èÛë‘ïœêî

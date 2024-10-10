@@ -1,7 +1,7 @@
 #include "Enemy1.h"
 #include "AnimData.h"
 #include "Map.h"
-
+#include"Slash.h"
 void Enemy1::StateIdle()
 {
 	//移動量
@@ -183,6 +183,24 @@ void Enemy1::Collision(Base* b)
 				m_is_ground = true;
 			}
 		}
+	case eType_Player_Attack:
+		//Slash型へキャスト、型変換できたら
+		if (Slash* s = dynamic_cast<Slash*>(b)) {
+			if (Base::CollisionRect(this, s)) {
+
+
+				m_hp -= 5;
+				if (m_hp <= 0) {
+					m_state = eState_Down;
+				}
+				else {
+					m_state = eState_Damage;
+				}
+				//Base::Add(new Effect("Effect_Blood", m_pos + CVector2D(0, -128), m_flip));
+			}
+		}
+
+		break;
 	}
 	/*case eType_Map:
 		//Field型へキャスト、型変換できたら
@@ -199,7 +217,7 @@ void Enemy1::Collision(Base* b)
 		}
 		break;
 	}*/
-
+	
 }
 static TexAnim enemy1Idle[] = {
 

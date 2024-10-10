@@ -4,7 +4,7 @@
 #include"bar4.h"
 #include"Bullet.h"
 #include"Goal.h"
-
+#include"Slash.h"
 Enemy3::Enemy3(const CVector2D& pos, bool flip) :Base(eType_Enemy3)
 {
 	//画像複製
@@ -21,7 +21,7 @@ Enemy3::Enemy3(const CVector2D& pos, bool flip) :Base(eType_Enemy3)
     //矩形
     m_rect = CRect(-30, -110, 30, 0);
     //体力
-	m_hp = 35;
+	m_hp = 80;
     //反転フラグ
     m_flip = flip;
     //着地フラグ
@@ -244,6 +244,24 @@ void Enemy3::Collision(Base* b)
         }
 
             break;
+    case eType_Player_Attack:
+        //Slash型へキャスト、型変換できたら
+        if (Slash* s = dynamic_cast<Slash*>(b)) {
+            if (Base::CollisionRect(this, s)) {
+
+
+                m_hp -= 5;
+                if (m_hp <= 0) {
+                    m_state = eState_Down;
+                }
+                else {
+                    m_state = eState_Damage;
+                }
+                //Base::Add(new Effect("Effect_Blood", m_pos + CVector2D(0, -128), m_flip));
+            }
+        }
+
+        break;
 
         
     }
