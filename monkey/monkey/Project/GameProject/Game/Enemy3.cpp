@@ -5,6 +5,7 @@
 #include"Bullet.h"
 #include"Goal.h"
 #include"Slash.h"
+#include"Title/TItle.h"
 Enemy3::Enemy3(const CVector2D& pos, bool flip) :Base(eType_Enemy3)
 {
 	//âÊëúï°êª
@@ -154,7 +155,7 @@ void Enemy3::StateDown()
 {
     m_img.ChangeAnimation(E3Down, false);
     if (m_img.CheckAnimationEnd()) {
-       Base::Add(new Goal(CVector2D(13850, 500)));
+      
         m_kill = true;
     }
 }
@@ -262,8 +263,7 @@ void Enemy3::Collision(Base* b)
         }
 
         break;
-
-        
+   
     }
 
 }
