@@ -3,7 +3,7 @@
 #include"Map.h"
 #include"bar4.h"
 #include"Bullet.h"
-
+#include"Goal.h"
 
 Enemy3::Enemy3(const CVector2D& pos, bool flip) :Base(eType_Enemy3)
 {
@@ -156,7 +156,7 @@ void Enemy3::StateDown()
 {
     m_img.ChangeAnimation(E3Down, false);
     if (m_img.CheckAnimationEnd()) {
-       // Base::Add(new Effect("Effect_Smoke", m_pos + CVector2D(0, 0), m_flip));
+       Base::Add(new Goal(CVector2D(13850, 500)));
         m_kill = true;
     }
 }

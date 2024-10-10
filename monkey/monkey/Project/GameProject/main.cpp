@@ -136,7 +136,7 @@ void Init(void)
 	Base::Add(new Map);
 	ADD_RESOURCE("Tp", CImage::CreateImage("Image/tp.png"));
 	ADD_RESOURCE("Goal", CImage::CreateImage("Image/bu.png"));
-	//Base::Add(new Goal(CVector2D(13850, 500)));
+	//
 //èºë∫
 	ADD_RESOURCE("Player", CImage::CreateImage("Image/pureiya-3.png", player_anim_data, 50, 37));
 	Base::Add(new Player(CVector2D(400, 400), true));
