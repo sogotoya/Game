@@ -33,13 +33,13 @@ void Enemy1::StateIdle()
 				move_flag = true;
 			}
 			//下移動
-			if (player->m_pos.y < m_pos.y - 32) {//64ドット離れていると移動します
+			if (player->m_pos.y < m_pos.y - 64) {//64ドット離れていると移動します
 				//移動量を設定
 				m_pos.y += -move_speed;
 				move_flag = true;
 			}
 			//上移動
-			if (player->m_pos.y > m_pos.y + 32) {
+			if (player->m_pos.y > m_pos.y + 64) {
 				//移動力を設定
 				m_pos.y += move_speed;
 				move_flag = true;
