@@ -16,7 +16,7 @@ Player::Player(const CVector2D& p, bool flip) :
 	m_img.SetSize(100, 100);
 	m_rect = CRect(-30,-90, 30, 0);
 	//反転フラグ
-	m_flip = flip;
+	//m_flip = flip;
 	//通常状態へ
 	m_state = eState_Idle;
 	//着地フラグ
