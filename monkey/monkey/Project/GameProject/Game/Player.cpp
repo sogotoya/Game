@@ -28,7 +28,7 @@ Player::Player(const CVector2D& p, bool flip) :
 void Player::StateIdle()
 {
 	//ˆÚ“®—Ê
-	const float move_speed = 8;//8
+	const float move_speed = 100;//8
 	//ˆÚ“®ƒtƒ‰ƒO
 	bool move_flag = false;
 	//¶ˆÚ“®
