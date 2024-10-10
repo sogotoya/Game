@@ -27,17 +27,17 @@ void bar4::Update()
 
 	if (turn == 0)
 	{
-		m_pos.y += 6;
+		m_pos.y +=3 ;
 	}
-	if (m_pos.y > 6 * MAP_TIP_SIZE)
+	if (m_pos.y > 5 * MAP_TIP_SIZE)
 	{
 		turn = 1;
 	}
 	if (turn == 1)
 	{
-		m_pos.y -= 9;
+		m_pos.y -= 3;
 	}
-	if (m_pos.y < 1 * MAP_TIP_SIZE)
+	if (m_pos.y < 2* MAP_TIP_SIZE)
 	{
 		turn = 0;
 	}
