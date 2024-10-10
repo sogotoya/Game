@@ -134,6 +134,8 @@ void Init(void)
 	ADD_RESOURCE("Enemy1", CImage::CreateImage("Image/Bat.png", Enemy1_anim_data, 150, 150));
 	
 	ADD_RESOURCE("Title", CImage::CreateImage("Image/sima.png"));
+	ADD_RESOURCE("Title1", CImage::CreateImage("Image/Title.png"));
+	ADD_RESOURCE("Title2", CImage::CreateImage("Image/Title2.png"));
 	Base::Add(new Title());
 
 
