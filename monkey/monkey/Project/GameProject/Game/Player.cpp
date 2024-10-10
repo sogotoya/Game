@@ -55,6 +55,7 @@ void Player::StateIdle()
 		m_state = eState_Attack01;
 
 		//Base::Add(new Slash(m_pos + CVector2D(64, -64), m_flip, eType_Player_Attack, 0));
+		
 	}
 	//‚µ‚á‚ª‚Ý
 	if (HOLD(CInput::eDown)) {
