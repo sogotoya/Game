@@ -29,7 +29,7 @@ Player::Player(const CVector2D& p, bool flip) :
 void Player::StateIdle()
 {
 	//à⁄ìÆó 
-	const float move_speed = 50;//8
+	const float move_speed = 8;//8
 	//à⁄ìÆÉtÉâÉO
 	bool move_flag = false;
 	//ç∂à⁄ìÆ
@@ -399,13 +399,13 @@ static TexAnim playerJumpDown[] = {
 
 TexAnimData player_anim_data[] = {
 	ANIMDATA(playerIdle),
-	ANIMDATA(playerBattou),//playerStep
-	ANIMDATA(playerStep),//playerJumpup
-	ANIMDATA(playerAttack01),//playerJumpDown
-	ANIMDATA(playerAttack02),//playerAttack01
+	ANIMDATA(playerStep),//playerStep
+	ANIMDATA(playerJumpup),//playerJumpup
+	ANIMDATA(playerJumpDown),//playerJumpDown
+	ANIMDATA(playerAttack01),//playerAttack01
 	ANIMDATA(playerCrouchi),//playerCrouchi
-	ANIMDATA(playerDown),//playerBattou
-	ANIMDATA(playerJumpup),//playerAttack02
-	ANIMDATA(playerJumpDown),//playerDown
+	ANIMDATA(playerBattou),//playerBattou
+	ANIMDATA(playerAttack02),//playerAttack02
+	ANIMDATA(playerDown),//playerDown
 };
 
