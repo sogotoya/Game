@@ -4,6 +4,7 @@ Title::Title() :Base(eType_Scene),
 m_title_text("C:\\Windows\\Fonts\\msgothic.ttc", 64)
 {
 	m_img = COPY_RESOURCE("Title", CImage);
+	m_img.SetSize(1920, 1080);
 	m_cnt = 0;
 }
 
