@@ -64,47 +64,51 @@ void Enemy2::StateIdle()//ジャンプなし
 
 	Base* player = Base::FindObject(eType_Player);
 	if (player) {
-		//左移動
-		if (player->m_pos.x < m_pos.x - 32) { //32ドット離れていると移動
-			//移動量を設定
-			m_pos.x += -move_speed;
-			//反転フラグ
-			m_flip = true;
-			move_flag = true;
-		}
-		//右移動
-		if (player->m_pos.x > m_pos.x + 32) { //32ドット離れていると移動
-			//移動量を設定
-			m_pos.x += move_speed;
-			//反転フラグ
-			m_flip = false;
-			move_flag = true;
-		}
+		CVector2D v = player->m_pos - m_pos;
+		if (abs(v.x) <= 510) {
+
+			//左移動
+			if (player->m_pos.x < m_pos.x - 32) { //32ドット離れていると移動
+				//移動量を設定
+				m_pos.x += -move_speed;
+				//反転フラグ
+				m_flip = true;
+				move_flag = true;
+			}
+			//右移動
+			if (player->m_pos.x > m_pos.x + 32) { //32ドット離れていると移動
+				//移動量を設定
+				m_pos.x += move_speed;
+				//反転フラグ
+				m_flip = false;
+				move_flag = true;
+			}
 
 
-		//左攻撃
-		if (player->m_pos.x < m_pos.x && player->m_pos.x > m_pos.x - 64) {
-			//攻撃状態へ移行
-			m_state = eState_Attack;
-			m_attack_no++;  //多段ヒット対策
-			m_flip = true;  //反転フラグ
+			//左攻撃
+			if (player->m_pos.x < m_pos.x && player->m_pos.x > m_pos.x - 64) {
+				//攻撃状態へ移行
+				m_state = eState_Attack;
+				m_attack_no++;  //多段ヒット対策
+				m_flip = true;  //反転フラグ
 
+			}
+			//右攻撃
+			if (player->m_pos.x > m_pos.x && player->m_pos.x < m_pos.x + 64) { //player->m_pos.x（プレイヤー） > m_pos.x(敵）
+				//攻撃状態へ移行
+				m_state = eState_Attack;
+				m_attack_no++;
+				m_flip = false;
+			}
 		}
-		//右攻撃
-		if (player->m_pos.x > m_pos.x && player->m_pos.x < m_pos.x + 64) { //player->m_pos.x（プレイヤー） > m_pos.x(敵）
-			//攻撃状態へ移行
-			m_state = eState_Attack;
-			m_attack_no++;
-			m_flip = false;
+		if (move_flag) {
+			//走るアニメーション
+			m_img.ChangeAnimation(e2AnimRun);
 		}
-	}
-	if (move_flag) {
-		//走るアニメーション
-		m_img.ChangeAnimation(e2AnimRun);
-	}
-	else {
-		//待機アニメーション
-		m_img.ChangeAnimation(e2step);
+		else {
+			//待機アニメーション
+			m_img.ChangeAnimation(e2step);
+		}
 	}
 }
 
