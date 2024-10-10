@@ -26,6 +26,6 @@ void Goal::Draw()
 	//•\Ž¦
 	m_img.Draw();
 	//“–‚½‚è”»’è‹éŒ`‚Ì•\Ž¦
-	DrawRect();
+	//DrawRect();
 	//Utility::DrawCircle(GetScreenPos(m_pos), m_rad, CVector4D(1, 1, 1, 1));
 }

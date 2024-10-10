@@ -218,7 +218,7 @@ void Enemy2::Draw()
 	//•`‰æ
 	m_img.Draw();
 	//“–‚½‚è”»’è‹éŒ`•\Ž¦
-	DrawRect();
+	//DrawRect();
 
 }
 
