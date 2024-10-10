@@ -18,10 +18,10 @@ private:
 		eAnimRun,
 		eAnimJumpUp,
 		eAnimJumpDown,
-		eAnimAttack01,//
-		eAnimCrouchi,//
-		eAnimBattou,//
-		eAnimAttack02,//
+		eAnimAttack01,
+		eAnimCrouchi,
+		eAnimBattou,
+		eAnimAttack02,
 		eAnimDown,
 		
 	};

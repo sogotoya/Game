@@ -19,7 +19,7 @@
 Game::Game():Base(eType_Scene)
 {
 	//濵元
-	Base::Add(new Enemy3(CVector2D(14300, 500), true));
+	Base::Add(new Enemy3(CVector2D(500/*14300*/, 500), true));
 	Base::Add(new bar2(CVector2D(10000, 200), true));
 	Base::Add(new bar(CVector2D(3400, 500), true));
 	Base::Add(new bar3(CVector2D(10700, 600), true));
@@ -48,7 +48,7 @@ Game::Game():Base(eType_Scene)
 	Base::Add(new Enemy1(CVector2D(8000, 500), true));
 	
 
-
+	m_gamestate = 0;
 }
 
 Game::~Game()
@@ -57,13 +57,24 @@ Game::~Game()
 
 void Game::Update()
 {
-	//ゴールが無ければゲームシーン終了
-	//if (!Base::FindObject(eType_Goal)) {
+	switch (m_gamestate) {
+		case 0:
+			if (!Base::FindObject(eType_Enemy3)) {
+				m_gamestate++;
+				Base::Add(new Goal(CVector2D(13850, 500)));
+			}
+			break;
+		case 1:
+			//ゴールが無ければゲームシーン終了
+			if (!Base::FindObject(eType_Goal)) {
 		//すべてのオブジェクトを破壊
-		//Base::KillAll();
+			Base::KillAll();
 		//タイトルシーンへ
-		//Base::Add(new Title());
-	//}
+			Base::Add(new Title());
+		}
+			break;
+	}
+	
 	//プレイヤー死亡　ボタン１でゲームシーンを終了
 	if (!Base::FindObject(eType_Player) && PUSH(CInput::eButton1)) {
 		//すべてのオブジェクトを破壊
