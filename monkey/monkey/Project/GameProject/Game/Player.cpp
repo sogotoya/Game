@@ -399,13 +399,13 @@ static TexAnim playerJumpDown[] = {
 
 TexAnimData player_anim_data[] = {
 	ANIMDATA(playerIdle),
-	ANIMDATA(playerStep),//playerStep
-	ANIMDATA(playerJumpup),//playerJumpup
-	ANIMDATA(playerJumpDown),//playerJumpDown
-	ANIMDATA(playerAttack01),//playerAttack01
+	ANIMDATA(playerBattou),//playerStep
+	ANIMDATA(playerStep),//playerJumpup
+	ANIMDATA(playerAttack01),//playerJumpDown
+	ANIMDATA(playerAttack02),//playerAttack01
 	ANIMDATA(playerCrouchi),//playerCrouchi
-	ANIMDATA(playerBattou),//playerBattou
-	ANIMDATA(playerAttack02),//playerAttack02
-	ANIMDATA(playerDown),//playerDown
+	ANIMDATA(playerDown),//playerBattou
+	ANIMDATA(playerJumpup),//playerAttack02
+	ANIMDATA(playerJumpDown),//playerDown
 };
 

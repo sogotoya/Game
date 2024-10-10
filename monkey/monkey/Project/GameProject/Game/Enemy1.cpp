@@ -252,6 +252,7 @@ static TexAnim enemy1Down[] = {
 	{ 21,18 },
 	{ 22,18 },
 	{ 23,18 },
+	{ 24,18 },
 };
 TexAnimData Enemy1_anim_data[] = {
 	ANIMDATA(enemy1Idle),
