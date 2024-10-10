@@ -44,7 +44,7 @@ Game::Game():Base(eType_Scene)
 
 //èºë∫
 	
-	Base::Add(new Player(CVector2D(13000, 400), true));
+	Base::Add(new Player(CVector2D(300, 900), true));
 	
 	Base::Add(new Enemy1(CVector2D(3000, 300), true));
 	Base::Add(new Enemy1(CVector2D(8000, 500), true));
