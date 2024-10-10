@@ -112,7 +112,7 @@ void Init(void)
 	//˚Må≥
 	ADD_RESOURCE("bar2", CImage::CreateImage("Image/bar.png", bar_anim_data, 32, 9));
 	ADD_RESOURCE("Enemy3", CImage::CreateImage("Image/sova.png", enemy3_anim_data, 288,128 ));
-	Base::Add(new Enemy3(CVector2D(200, 200), true));
+	Base::Add(new Enemy3(CVector2D(2000, 500), true));
 	Base::Add(new bar2(CVector2D(9900, 200), true));
 	ADD_RESOURCE("BackGround", CImage::CreateImage("Image/haikei.png"));
 	ADD_RESOURCE("bar", CImage::CreateImage("Image/bar.png",bar_anim_data, 32, 9));
@@ -120,7 +120,7 @@ void Init(void)
 	ADD_RESOURCE("bar3", CImage::CreateImage("Image/bar.png", bar_anim_data, 32, 9));
 	Base::Add(new bar3(CVector2D(10500, 600), true));
 	ADD_RESOURCE("bar4", CImage::CreateImage("Image/bar.png", bar_anim_data, 32, 9));
-	Base::Add(new bar4(CVector2D(14150, 500), true));
+	Base::Add(new bar4(CVector2D(14300, 500), true));
 	//è\âÕ
 	ADD_RESOURCE("Enemy2", CImage::CreateImage("Image/gobuta.png", enemy2_anim_data, 150, 150));
 	Base::Add(new Enemy2(CVector2D(300, 300), true));

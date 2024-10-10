@@ -47,6 +47,7 @@ private:
 	void StateDown();
 public:
 	Enemy3(const CVector2D& pos, bool flip);
+	int m_cnt;
 	void Update();
 	void Draw();
 	void Collision(Base* b);
