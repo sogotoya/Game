@@ -5,19 +5,19 @@
 void Enemy1::StateIdle()
 {
 	//移動量
-	const float move_speed = 4;
+	const float move_speed = 5;
 	//移動フラグ
 	bool move_flag = false;
 	//ジャンプ力
 	const float jump_pow = 12;
 	Base* player = Base::FindObject(eType_Player);
 	if (player) {
-		CVector2D v = player->m_pos - m_pos;
+		CVector2D v = player->m_pos + CVector2D(0,-64) - m_pos;
 		if (abs(v.x) <= 510) {
 
 
 			//左移動
-			if (player->m_pos.x < m_pos.x - 64) {//64ドット離れていると移動します
+			if (v.x <-16) {//64ドット離れていると移動します
 				//移動量を設定
 				m_pos.x += -move_speed;
 				//反転フラグ
@@ -25,40 +25,33 @@ void Enemy1::StateIdle()
 				move_flag = true;
 			}
 			//右移動
-			if (player->m_pos.x > m_pos.x + 64) {
+			if (v.x > +16) {
 				//移動力を設定
 				m_pos.x += move_speed;
 				//反転フラグ
 				m_flip = false;
 				move_flag = true;
 			}
-			//下移動
-			if (player->m_pos.y < m_pos.y - 64) {//64ドット離れていると移動します
+			//上移動
+			if (v.y < -16) {//64ドット離れていると移動します
 				//移動量を設定
 				m_pos.y += -move_speed;
 				move_flag = true;
 			}
-			//上移動
-			if (player->m_pos.y > m_pos.y + 64) {
+			//下移動
+			if (v.y > + 16) {
 				//移動力を設定
 				m_pos.y += move_speed;
 				move_flag = true;
 			}
 		}
 		//左攻撃
-		if (player->m_pos.x < m_pos.x && player->m_pos.x > m_pos.x - 64) {
+		if (v.Length() <  24 ) {
 			//攻撃状態へ移行
 			m_state = eState_Attack;
 			m_attack_no++;  //多段ヒット対策
-			m_flip = true;  //反転フラグ
+			//m_flip = true;  //反転フラグ
 
-		}
-		//右攻撃
-		if (player->m_pos.x > m_pos.x && player->m_pos.x < m_pos.x + 64) { //player->m_pos.x（プレイヤー） > m_pos.x(敵）
-			//攻撃状態へ移行
-			m_state = eState_Attack;
-			m_attack_no++;
-			m_flip = false;
 		}
 		m_img.ChangeAnimation(eState_Idle, false);
 	}
@@ -103,9 +96,9 @@ Enemy1::Enemy1(const CVector2D& p, bool flip) :Base(eType_Enemy) {
 	
 	m_img.SetSize(200, 200);
 	//中心位置設定
-	m_img.SetCenter(100,190);
+	m_img.SetCenter(100,100);
 	//当たり判定用矩形設定
-	m_rect = CRect(-45, -115, 45, -60);
+	m_rect = CRect(-45, -15, 45, 15);
 	
 	//ヒットポイント
 	m_hp = 5;
