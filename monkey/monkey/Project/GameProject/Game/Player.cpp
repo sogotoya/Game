@@ -64,7 +64,7 @@ void Player::StateIdle()
 
 	}
 	//ジャンプ力
-	const float jump_pow = 15;
+	const float jump_pow = 12;
 
 	//ジャンプ
 	if (m_is_ground && PUSH(CInput::eButton2)) {
